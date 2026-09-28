@@ -1,0 +1,32 @@
+# Levanta la API y PostgreSQL:  docker compose up --build
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: bobinapp
+      POSTGRES_PASSWORD: bobinapp
+      POSTGRES_DB: bobinapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - datos-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bobinapp"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgres://bobinapp:bobinapp@db:5432/bobinapp
+      PORT: 3000
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-sonnet-4-5}
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  datos-pg:

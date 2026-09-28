@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bobinapp</string>
+    <string name="canal_alertas">Alertas del hato</string>
+    <string name="canal_alertas_desc">Celos, partos, dosis de medicamentos y vacunas pendientes</string>
+</resources>

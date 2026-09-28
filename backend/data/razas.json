@@ -1,0 +1,1151 @@
+[
+  {
+    "id": "brahman",
+    "nombre": "Brahman",
+    "otrosNombres": "Cebú americano",
+    "grupo": "indicus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Estados Unidos (de razas de la India)",
+    "pelaje": "Gris claro a plateado (machos más oscuros en cuello y cuartos delanteros) o rojo",
+    "cuernos": "Medianos, hacia arriba y atrás; algunos descornados",
+    "pesoMachoKg": "800–1,000",
+    "pesoHembraKg": "450–650",
+    "clima": "Tropical cálido y húmedo",
+    "descripcion": "La raza cebú más difundida en América tropical. Se formó en Texas a inicios del siglo XX cruzando Guzerat, Nelore, Gyr y Krishna Valley. Es la base de muchos cruces de carne en Centroamérica.",
+    "rasgos": [
+      "Giba grande sobre la cruz",
+      "Papada y prepucio/ombligo muy desarrollados",
+      "Orejas largas y caídas",
+      "Piel suelta, oscura y pigmentada",
+      "Perfil de cara recto"
+    ],
+    "ventajas": [
+      "Tolera calor extremo y radiación",
+      "Resistente a garrapatas e insectos",
+      "Longeva y buena madre",
+      "Excelente para cruzar (vigor híbrido)"
+    ],
+    "desventajas": [
+      "Temperamento nervioso si no se maneja con calma",
+      "Pubertad tardía",
+      "Carne menos tierna que razas europeas"
+    ],
+    "dato": "Tiene más glándulas sudoríparas que el ganado europeo, por eso aguanta mejor el calor.",
+    "colorPrincipal": "#C9C6BF",
+    "colorSecundario": "#77736C",
+    "giba": true
+  },
+  {
+    "id": "brahman_rojo",
+    "nombre": "Brahman rojo",
+    "otrosNombres": "Red Brahman",
+    "grupo": "indicus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Estados Unidos",
+    "pelaje": "Rojo cereza a rojo oscuro, uniforme",
+    "cuernos": "Medianos, hacia arriba",
+    "pesoMachoKg": "800–1,000",
+    "pesoHembraKg": "450–650",
+    "clima": "Tropical cálido",
+    "descripcion": "Variedad roja del Brahman, con las mismas características de rusticidad. Muy usada en cruces con razas europeas rojas y en Centroamérica.",
+    "rasgos": [
+      "Giba marcada",
+      "Pelaje rojo uniforme",
+      "Orejas largas caídas",
+      "Papada amplia"
+    ],
+    "ventajas": [
+      "Rústico y resistente al calor",
+      "Buena habilidad materna",
+      "Pelaje rojo refleja menos calor que el negro"
+    ],
+    "desventajas": [
+      "Temperamento variable",
+      "Madurez sexual tardía"
+    ],
+    "dato": "El color rojo proviene en buena parte del Gyr.",
+    "colorPrincipal": "#A4472C",
+    "colorSecundario": "#6D2A18",
+    "giba": true
+  },
+  {
+    "id": "nelore",
+    "nombre": "Nelore",
+    "otrosNombres": "Nellore, Ongole",
+    "grupo": "indicus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Brasil (de la raza Ongole, India)",
+    "pelaje": "Blanco a gris claro; toros con cabeza y cuello más oscuros",
+    "cuernos": "Cortos y gruesos",
+    "pesoMachoKg": "750–1,000",
+    "pesoHembraKg": "450–550",
+    "clima": "Tropical, pasturas extensivas",
+    "descripcion": "La raza más numerosa de Brasil y base de su industria de carne. Animal muy rústico, adaptado a pasturas pobres y grandes extensiones.",
+    "rasgos": [
+      "Pelaje blanco o gris claro",
+      "Orejas cortas y en punta (forma de lanza)",
+      "Giba en forma de riñón",
+      "Piel negra",
+      "Cuerpo largo y patas largas"
+    ],
+    "ventajas": [
+      "Muy rústico y resistente a parásitos",
+      "Partos fáciles",
+      "Buena conversión en pastoreo"
+    ],
+    "desventajas": [
+      "Carne con poco marmoleo",
+      "Temperamento reactivo",
+      "Baja producción de leche"
+    ],
+    "dato": "Se distingue del Brahman por sus orejas cortas y en punta.",
+    "colorPrincipal": "#E4E1DA",
+    "colorSecundario": "#A8A49C",
+    "giba": true
+  },
+  {
+    "id": "gyr",
+    "nombre": "Gyr",
+    "otrosNombres": "Gir, Gir lechero",
+    "grupo": "indicus",
+    "aptitudes": [
+      "leche",
+      "doble"
+    ],
+    "origen": "India (península de Kathiawar, Gujarat)",
+    "pelaje": "Rojo, amarillo o moteado rojo y blanco",
+    "cuernos": "Gruesos, salen hacia atrás y abajo, en espiral",
+    "pesoMachoKg": "700–900",
+    "pesoHembraKg": "400–500",
+    "clima": "Tropical",
+    "descripcion": "Raza cebú de aptitud lechera muy usada en el trópico, sobre todo para producir Girolando al cruzarla con Holstein.",
+    "rasgos": [
+      "Frente muy abultada (convexa)",
+      "Orejas muy largas, colgantes y enrolladas en la punta",
+      "Cuernos que salen hacia atrás y abajo",
+      "Pelaje rojo moteado"
+    ],
+    "ventajas": [
+      "Leche en clima tropical",
+      "Dócil",
+      "Resistente a garrapatas",
+      "Longeva"
+    ],
+    "desventajas": [
+      "Producción menor que razas europeas",
+      "Pezones grandes y apoyo del ternero en ordeño"
+    ],
+    "dato": "Su frente abombada es tan típica que basta para reconocerla de frente.",
+    "colorPrincipal": "#B5562F",
+    "colorSecundario": "#F3EFE6",
+    "giba": true
+  },
+  {
+    "id": "guzerat",
+    "nombre": "Guzerat",
+    "otrosNombres": "Kankrej",
+    "grupo": "indicus",
+    "aptitudes": [
+      "doble",
+      "carne"
+    ],
+    "origen": "India (Gujarat) y Brasil",
+    "pelaje": "Gris plateado a casi negro en toros; más claro en vacas",
+    "cuernos": "Grandes, en forma de lira",
+    "pesoMachoKg": "750–1,000",
+    "pesoHembraKg": "450–600",
+    "clima": "Tropical seco y húmedo",
+    "descripcion": "Cebú de gran tamaño con doble propósito. Muy apreciada por su resistencia a la sequía y por sus cuernos en lira.",
+    "rasgos": [
+      "Cuernos grandes en forma de lira",
+      "Cuartos delanteros y cabeza más oscuros",
+      "Orejas grandes y colgantes",
+      "Giba moderada"
+    ],
+    "ventajas": [
+      "Resistente a sequía",
+      "Buena para tracción y leche",
+      "Carne y leche en un solo animal"
+    ],
+    "desventajas": [
+      "Madurez tardía",
+      "Menor rendimiento que razas especializadas"
+    ],
+    "dato": "Históricamente fue muy usada como animal de trabajo por su fuerza.",
+    "colorPrincipal": "#B3B0AA",
+    "colorSecundario": "#4B4944",
+    "giba": true
+  },
+  {
+    "id": "sahiwal",
+    "nombre": "Sahiwal",
+    "otrosNombres": "",
+    "grupo": "indicus",
+    "aptitudes": [
+      "leche"
+    ],
+    "origen": "Pakistán (Punyab)",
+    "pelaje": "Pardo rojizo a rojo oscuro, a veces con manchas blancas",
+    "cuernos": "Cortos o ausentes",
+    "pesoMachoKg": "500–600",
+    "pesoHembraKg": "350–450",
+    "clima": "Tropical y árido",
+    "descripcion": "Considerada una de las mejores razas cebú lecheras del mundo. Se usa en África, Australia y Asia para mejorar leche en el trópico.",
+    "rasgos": [
+      "Pelaje rojo pardo",
+      "Cuerpo compacto y piel suelta",
+      "Ombligo y papada colgantes",
+      "Cuernos cortos"
+    ],
+    "ventajas": [
+      "Buena leche en calor",
+      "Tolerante a garrapatas",
+      "Dócil"
+    ],
+    "desventajas": [
+      "Tamaño pequeño",
+      "Poco difundida en Centroamérica"
+    ],
+    "dato": "Su leche tiene alto contenido de grasa para ser cebú.",
+    "colorPrincipal": "#8F4526",
+    "colorSecundario": null,
+    "giba": true
+  },
+  {
+    "id": "indubrasil",
+    "nombre": "Indubrasil",
+    "otrosNombres": "",
+    "grupo": "indicus",
+    "aptitudes": [
+      "carne",
+      "doble"
+    ],
+    "origen": "Brasil (Gyr × Guzerat × Nelore)",
+    "pelaje": "Blanco, gris, amarillento o rojo",
+    "cuernos": "Medianos, hacia atrás o laterales",
+    "pesoMachoKg": "800–1,000",
+    "pesoHembraKg": "450–600",
+    "clima": "Tropical",
+    "descripcion": "Cebú formado en Minas Gerais. Fue muy popular en México y Centroamérica a mediados del siglo XX.",
+    "rasgos": [
+      "Orejas extremadamente largas y colgantes",
+      "Frente algo convexa",
+      "Giba grande",
+      "Cuerpo alto y largo"
+    ],
+    "ventajas": [
+      "Tamaño grande",
+      "Rústico",
+      "Útil para cruces"
+    ],
+    "desventajas": [
+      "Menor precocidad",
+      "Las orejas muy largas pueden lesionarse"
+    ],
+    "dato": "Tiene las orejas más largas de las razas cebú comunes.",
+    "colorPrincipal": "#D8D3C8",
+    "colorSecundario": "#9C968A",
+    "giba": true
+  },
+  {
+    "id": "angus",
+    "nombre": "Aberdeen Angus",
+    "otrosNombres": "Angus negro, Black Angus",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Escocia",
+    "pelaje": "Negro sólido (existe variedad roja)",
+    "cuernos": "Sin cuernos (mocho natural)",
+    "pesoMachoKg": "850–1,000",
+    "pesoHembraKg": "550–650",
+    "clima": "Templado; en trópico se usa en cruce (Brangus)",
+    "descripcion": "La raza de carne más famosa del mundo por el marmoleo de su carne. Precoz y de partos fáciles.",
+    "rasgos": [
+      "Pelaje negro uniforme",
+      "Sin cuernos, cabeza con cresta en punta",
+      "Cuerpo compacto, profundo y cilíndrico",
+      "Patas cortas"
+    ],
+    "ventajas": [
+      "Carne marmoleada y tierna",
+      "Partos fáciles",
+      "Precoz",
+      "Muy dócil"
+    ],
+    "desventajas": [
+      "Sufre en calor tropical fuerte",
+      "Pelaje negro absorbe calor"
+    ],
+    "dato": "El gen mocho del Angus es dominante: sus crías cruzadas suelen nacer sin cuernos.",
+    "colorPrincipal": "#1F1D1B",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "angus_rojo",
+    "nombre": "Red Angus",
+    "otrosNombres": "Angus rojo",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Escocia / Estados Unidos",
+    "pelaje": "Rojo sólido",
+    "cuernos": "Sin cuernos",
+    "pesoMachoKg": "850–1,000",
+    "pesoHembraKg": "550–650",
+    "clima": "Templado; algo mejor al calor que el negro",
+    "descripcion": "Variedad roja del Angus, con la misma calidad de carne. El color rojo es recesivo.",
+    "rasgos": [
+      "Pelaje rojo uniforme",
+      "Sin cuernos",
+      "Cuerpo compacto y cilíndrico"
+    ],
+    "ventajas": [
+      "Carne de alta calidad",
+      "Partos fáciles",
+      "Soporta mejor la radiación solar que el negro"
+    ],
+    "desventajas": [
+      "Poca tolerancia a calor húmedo extremo"
+    ],
+    "dato": "Dos padres Angus rojos siempre producen crías rojas.",
+    "colorPrincipal": "#8E3A22",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "hereford",
+    "nombre": "Hereford",
+    "otrosNombres": "Cara blanca",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Inglaterra (Herefordshire)",
+    "pelaje": "Rojo con cara, pecho, vientre, patas bajas y borla de la cola blancos",
+    "cuernos": "Con cuernos curvos hacia adelante o mocho (Polled Hereford)",
+    "pesoMachoKg": "900–1,100",
+    "pesoHembraKg": "550–700",
+    "clima": "Templado; pastoreo",
+    "descripcion": "Raza de carne muy difundida por su rusticidad en pastoreo y su temperamento tranquilo.",
+    "rasgos": [
+      "Cara totalmente blanca",
+      "Cuerpo rojo",
+      "Pecho y vientre blancos",
+      "Cola con punta blanca"
+    ],
+    "ventajas": [
+      "Muy dócil",
+      "Buena en pastoreo",
+      "Longeva y fértil"
+    ],
+    "desventajas": [
+      "Sensible a cáncer de ojo y quemaduras de ubre por falta de pigmento",
+      "Sufre en trópico"
+    ],
+    "dato": "Cruzada con Angus produce el 'Black Baldy': negro con cara blanca.",
+    "colorPrincipal": "#8A3A20",
+    "colorSecundario": "#F3EFE6",
+    "giba": false
+  },
+  {
+    "id": "charolais",
+    "nombre": "Charolais",
+    "otrosNombres": "Charolés",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Francia (Charolles, Borgoña)",
+    "pelaje": "Blanco a crema",
+    "cuernos": "Blancos, redondeados (existen mochos)",
+    "pesoMachoKg": "1,100–1,400",
+    "pesoHembraKg": "700–900",
+    "clima": "Templado; muy usado en cruces",
+    "descripcion": "Una de las razas más grandes y musculosas. Se usa mucho como padre terminal para producir terneros pesados.",
+    "rasgos": [
+      "Pelaje blanco o crema",
+      "Gran tamaño y musculatura",
+      "Cabeza corta y ancha",
+      "Hocico rosado"
+    ],
+    "ventajas": [
+      "Crecimiento muy rápido",
+      "Alto rendimiento en canal",
+      "Carne magra"
+    ],
+    "desventajas": [
+      "Partos difíciles por terneros grandes",
+      "Requiere buena alimentación"
+    ],
+    "dato": "Su cruce con Brahman forma la raza Charbray.",
+    "colorPrincipal": "#EEE7D6",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "simmental",
+    "nombre": "Simmental",
+    "otrosNombres": "Fleckvieh, Simental",
+    "grupo": "taurus",
+    "aptitudes": [
+      "doble",
+      "carne"
+    ],
+    "origen": "Suiza (valle del Simme)",
+    "pelaje": "Rojo o bayo con cara blanca y manchas blancas; en América también negro",
+    "cuernos": "Cortos o mocho",
+    "pesoMachoKg": "1,100–1,300",
+    "pesoHembraKg": "650–800",
+    "clima": "Templado; adaptable",
+    "descripcion": "Una de las razas más antiguas y numerosas. En Europa es doble propósito; en América se selecciona para carne.",
+    "rasgos": [
+      "Cara blanca",
+      "Manchas rojas/bayas con blanco",
+      "Patas y vientre blancos",
+      "Gran tamaño"
+    ],
+    "ventajas": [
+      "Crecimiento rápido",
+      "Buena leche para criar terneros",
+      "Muy fértil"
+    ],
+    "desventajas": [
+      "Requiere buen alimento",
+      "Terneros grandes"
+    ],
+    "dato": "Con Brahman forma el Simbrah.",
+    "colorPrincipal": "#B8672F",
+    "colorSecundario": "#F3EFE6",
+    "giba": false
+  },
+  {
+    "id": "limousin",
+    "nombre": "Limousin",
+    "otrosNombres": "Lemosín",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Francia (Lemosín)",
+    "pelaje": "Rojo dorado (trigueño); más claro alrededor de ojos, hocico y vientre",
+    "cuernos": "Finos, hacia adelante, o mocho",
+    "pesoMachoKg": "1,000–1,200",
+    "pesoHembraKg": "600–750",
+    "clima": "Templado",
+    "descripcion": "Raza de carne famosa por su musculatura y alto rendimiento en canal con poca grasa.",
+    "rasgos": [
+      "Pelaje trigueño",
+      "Anillos claros alrededor de ojos y hocico",
+      "Musculatura muy marcada en pierna",
+      "Cabeza corta y frente ancha"
+    ],
+    "ventajas": [
+      "Canal con mucha carne y poca grasa",
+      "Partos más fáciles que Charolais",
+      "Buen rendimiento"
+    ],
+    "desventajas": [
+      "Temperamento algo nervioso",
+      "Poca tolerancia al trópico"
+    ],
+    "dato": "También existe Limousin negro por cruces con Angus.",
+    "colorPrincipal": "#B8702F",
+    "colorSecundario": "#E9C38A",
+    "giba": false
+  },
+  {
+    "id": "shorthorn",
+    "nombre": "Shorthorn",
+    "otrosNombres": "Durham",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne",
+      "doble"
+    ],
+    "origen": "Inglaterra (Durham)",
+    "pelaje": "Rojo, blanco o ruano (mezcla de pelos rojos y blancos)",
+    "cuernos": "Cortos, curvos hacia adelante; o mocho",
+    "pesoMachoKg": "900–1,000",
+    "pesoHembraKg": "550–650",
+    "clima": "Templado",
+    "descripcion": "Raza británica antigua que dio origen a muchas razas sintéticas como la Santa Gertrudis.",
+    "rasgos": [
+      "Color ruano (rojo y blanco mezclado)",
+      "Cuernos cortos",
+      "Cuerpo rectangular"
+    ],
+    "ventajas": [
+      "Dócil",
+      "Buena habilidad materna",
+      "Carne marmoleada"
+    ],
+    "desventajas": [
+      "Menor presencia en el trópico"
+    ],
+    "dato": "Su color ruano resulta de la mezcla de pelos rojos y blancos, no de manchas.",
+    "colorPrincipal": "#9A4A2E",
+    "colorSecundario": "#F3EFE6",
+    "giba": false
+  },
+  {
+    "id": "wagyu",
+    "nombre": "Wagyu",
+    "otrosNombres": "Kuroge (negro), Akaushi (rojo)",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Japón",
+    "pelaje": "Negro (Kuroge) o rojo (Akaushi)",
+    "cuernos": "Cortos, curvados hacia adelante",
+    "pesoMachoKg": "800–900",
+    "pesoHembraKg": "450–550",
+    "clima": "Templado",
+    "descripcion": "Famosa por su marmoleo extremo, que da la carne de Kobe. Se usa en cruces para mejorar la calidad de carne.",
+    "rasgos": [
+      "Tamaño mediano",
+      "Pelaje negro o rojo",
+      "Cuernos cortos",
+      "Parte delantera más desarrollada"
+    ],
+    "ventajas": [
+      "Marmoleo excepcional",
+      "Partos fáciles",
+      "Precio alto de la carne"
+    ],
+    "desventajas": [
+      "Crecimiento lento",
+      "Engorde largo y costoso"
+    ],
+    "dato": "'Wagyu' significa simplemente 'ganado japonés'.",
+    "colorPrincipal": "#282421",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "azul_belga",
+    "nombre": "Azul Belga",
+    "otrosNombres": "Belgian Blue",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Bélgica",
+    "pelaje": "Blanco, azul ruano (gris azulado) o negro",
+    "cuernos": "Cortos",
+    "pesoMachoKg": "1,100–1,250",
+    "pesoHembraKg": "700–850",
+    "clima": "Templado; estabulado",
+    "descripcion": "Raza de 'doble musculatura' por una mutación del gen de la miostatina. Produce canales con muchísima carne magra.",
+    "rasgos": [
+      "Musculatura enorme y visible",
+      "Pelaje blanco con zonas azul-grisáceas",
+      "Grupa redondeada",
+      "Piel fina"
+    ],
+    "ventajas": [
+      "Rendimiento en canal muy alto",
+      "Carne muy magra"
+    ],
+    "desventajas": [
+      "Muchas vacas requieren cesárea",
+      "Exigente en manejo y alimento"
+    ],
+    "dato": "La mutación que causa su musculatura también existe en algunos perros y ovejas.",
+    "colorPrincipal": "#E6E6E2",
+    "colorSecundario": "#6E7A86",
+    "giba": false
+  },
+  {
+    "id": "longhorn",
+    "nombre": "Texas Longhorn",
+    "otrosNombres": "Cuernilargo",
+    "grupo": "criolla",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Estados Unidos (de ganado criollo español)",
+    "pelaje": "Muy variado: rojo, blanco, moteado, barcino",
+    "cuernos": "Enormes, pueden superar 2 m de punta a punta",
+    "pesoMachoKg": "700–1,000",
+    "pesoHembraKg": "400–550",
+    "clima": "Seco y caluroso",
+    "descripcion": "Descendiente del ganado traído por los españoles. Símbolo de Texas, hoy se cría por rusticidad y carne magra.",
+    "rasgos": [
+      "Cuernos larguísimos hacia los lados",
+      "Colores y manchas muy variados",
+      "Cuerpo delgado y patas largas"
+    ],
+    "ventajas": [
+      "Extremadamente rústico",
+      "Partos muy fáciles",
+      "Longevo"
+    ],
+    "desventajas": [
+      "Poco rendimiento en canal",
+      "Los cuernos dificultan el manejo"
+    ],
+    "dato": "Comparte origen con el ganado criollo de Centroamérica.",
+    "colorPrincipal": "#B5572C",
+    "colorSecundario": "#F3EFE6",
+    "giba": false
+  },
+  {
+    "id": "highland",
+    "nombre": "Highland",
+    "otrosNombres": "Escocesa de las Tierras Altas",
+    "grupo": "taurus",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Escocia",
+    "pelaje": "Largo y lanudo; rojo, amarillo, negro o bayo",
+    "cuernos": "Largos, abiertos y hacia arriba",
+    "pesoMachoKg": "700–800",
+    "pesoHembraKg": "450–550",
+    "clima": "Frío y húmedo",
+    "descripcion": "Raza rústica de pelo largo doble capa. Muy vistosa, usada en zonas frías y como ganado ornamental.",
+    "rasgos": [
+      "Pelo largo que cae sobre los ojos (flequillo)",
+      "Cuernos largos",
+      "Tamaño pequeño y patas cortas"
+    ],
+    "ventajas": [
+      "Soporta frío extremo",
+      "Carne magra",
+      "Muy longeva"
+    ],
+    "desventajas": [
+      "No apta para clima tropical",
+      "Crecimiento lento"
+    ],
+    "dato": "Su flequillo protege los ojos de insectos y del viento.",
+    "colorPrincipal": "#B26A2E",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "holstein",
+    "nombre": "Holstein",
+    "otrosNombres": "Holando, Holstein-Friesian",
+    "grupo": "taurus",
+    "aptitudes": [
+      "leche"
+    ],
+    "origen": "Países Bajos y norte de Alemania (Frisia)",
+    "pelaje": "Blanco y negro en manchas bien definidas (también rojo y blanco)",
+    "cuernos": "Cortos; normalmente se descornan",
+    "pesoMachoKg": "900–1,100",
+    "pesoHembraKg": "600–700",
+    "clima": "Templado; en trópico solo con buen manejo o en altura",
+    "descripcion": "La raza lechera más productiva y numerosa del mundo. Domina la producción comercial de leche.",
+    "rasgos": [
+      "Manchas negras y blancas bien delimitadas",
+      "Patas bajas y borla de la cola blancas",
+      "Ubre grande",
+      "Cuerpo anguloso y alto"
+    ],
+    "ventajas": [
+      "Mayor producción de leche por vaca: 9,000–12,000 kg por lactancia en sistemas intensivos",
+      "Rápida adaptación a ordeño mecánico"
+    ],
+    "desventajas": [
+      "Sensible al calor",
+      "Leche con menos grasa",
+      "Exige alimento de calidad"
+    ],
+    "dato": "El patrón de manchas de cada vaca es único, como una huella digital.",
+    "colorPrincipal": "#F3EFE6",
+    "colorSecundario": "#1E1C1A",
+    "giba": false
+  },
+  {
+    "id": "jersey",
+    "nombre": "Jersey",
+    "otrosNombres": "",
+    "grupo": "taurus",
+    "aptitudes": [
+      "leche"
+    ],
+    "origen": "Isla de Jersey (Canal de la Mancha)",
+    "pelaje": "Bayo o café claro a oscuro; hocico oscuro con anillo claro",
+    "cuernos": "Cortos; normalmente se descornan",
+    "pesoMachoKg": "540–820",
+    "pesoHembraKg": "360–500",
+    "clima": "Templado a cálido; tolera bien el trópico",
+    "descripcion": "Vaca lechera pequeña con la leche más rica en grasa y proteína. Muy eficiente y apta para pastoreo en climas cálidos.",
+    "rasgos": [
+      "Tamaño pequeño",
+      "Color café claro",
+      "Cara cóncava (perfil hundido) y ojos grandes",
+      "Hocico negro rodeado de un anillo blanco"
+    ],
+    "ventajas": [
+      "Leche con 4.8–5% de grasa: ideal para queso y crema",
+      "Tolera calor mejor que Holstein",
+      "Precoz y fértil"
+    ],
+    "desventajas": [
+      "Menor volumen de leche",
+      "Terneros machos con poco valor de carne"
+    ],
+    "dato": "Por su tamaño, cabe más ganado Jersey por hectárea.",
+    "colorPrincipal": "#A7703E",
+    "colorSecundario": "#2A221D",
+    "giba": false
+  },
+  {
+    "id": "pardo_suizo",
+    "nombre": "Pardo Suizo",
+    "otrosNombres": "Brown Swiss, Braunvieh",
+    "grupo": "taurus",
+    "aptitudes": [
+      "leche",
+      "doble"
+    ],
+    "origen": "Suiza",
+    "pelaje": "Pardo grisáceo; hocico claro rodeado de negro; franja clara en el lomo",
+    "cuernos": "Cortos, claros con punta negra",
+    "pesoMachoKg": "900–1,000",
+    "pesoHembraKg": "600–700",
+    "clima": "Templado y tropical de altura; muy adaptable",
+    "descripcion": "Muy popular en Centroamérica por su buena adaptación. La línea lechera (Brown Swiss) produce leche con alta proteína; el Braunvieh es de doble propósito.",
+    "rasgos": [
+      "Color pardo gris uniforme",
+      "Hocico claro con anillo",
+      "Orejas grandes y peludas",
+      "Cuerpo robusto"
+    ],
+    "ventajas": [
+      "Leche excelente para queso (alta proteína)",
+      "Patas y pezuñas fuertes",
+      "Longeva y dócil",
+      "Se adapta al calor mejor que Holstein"
+    ],
+    "desventajas": [
+      "Madurez algo tardía",
+      "Menos leche que Holstein"
+    ],
+    "dato": "Cruzada con cebú da animales de doble propósito muy usados en el trópico.",
+    "colorPrincipal": "#7C746B",
+    "colorSecundario": "#D6CFC3",
+    "giba": false
+  },
+  {
+    "id": "guernsey",
+    "nombre": "Guernsey",
+    "otrosNombres": "",
+    "grupo": "taurus",
+    "aptitudes": [
+      "leche"
+    ],
+    "origen": "Isla de Guernsey",
+    "pelaje": "Leonado (amarillo-rojizo) y blanco",
+    "cuernos": "Cortos",
+    "pesoMachoKg": "700–800",
+    "pesoHembraKg": "450–500",
+    "clima": "Templado",
+    "descripcion": "Raza lechera famosa por su leche dorada, rica en betacaroteno.",
+    "rasgos": [
+      "Manchas leonadas con blanco",
+      "Piel amarillenta",
+      "Tamaño mediano"
+    ],
+    "ventajas": [
+      "Leche rica en grasa y betacaroteno",
+      "Dócil",
+      "Eficiente en pastoreo"
+    ],
+    "desventajas": [
+      "Poco común en Latinoamérica"
+    ],
+    "dato": "El color dorado de su leche viene del betacaroteno del pasto.",
+    "colorPrincipal": "#F3EFE6",
+    "colorSecundario": "#C48A3E",
+    "giba": false
+  },
+  {
+    "id": "ayrshire",
+    "nombre": "Ayrshire",
+    "otrosNombres": "",
+    "grupo": "taurus",
+    "aptitudes": [
+      "leche"
+    ],
+    "origen": "Escocia",
+    "pelaje": "Rojo caoba y blanco, en manchas",
+    "cuernos": "Largos en forma de lira (a menudo se descornan)",
+    "pesoMachoKg": "700–900",
+    "pesoHembraKg": "500–600",
+    "clima": "Templado y frío",
+    "descripcion": "Raza lechera resistente y buena para pastoreo, con ubres de excelente forma.",
+    "rasgos": [
+      "Manchas rojo caoba con blanco",
+      "Cuernos en lira",
+      "Ubre bien sujeta"
+    ],
+    "ventajas": [
+      "Resistente",
+      "Buena longevidad",
+      "Pocos problemas de patas"
+    ],
+    "desventajas": [
+      "Temperamento algo vivo",
+      "Poco difundida en el trópico"
+    ],
+    "dato": "Se usa en Finlandia y Escocia en climas muy fríos.",
+    "colorPrincipal": "#F3EFE6",
+    "colorSecundario": "#8C2F1E",
+    "giba": false
+  },
+  {
+    "id": "normando",
+    "nombre": "Normando",
+    "otrosNombres": "Normande",
+    "grupo": "taurus",
+    "aptitudes": [
+      "doble"
+    ],
+    "origen": "Francia (Normandía)",
+    "pelaje": "Tricolor: blanco, bayo y atigrado; manchas oscuras alrededor de los ojos",
+    "cuernos": "Medianos",
+    "pesoMachoKg": "1,000–1,200",
+    "pesoHembraKg": "700–800",
+    "clima": "Templado y tropical de altura",
+    "descripcion": "Doble propósito con leche rica en proteína, ideal para quesos como el Camembert. Muy usada en Colombia y zonas altas.",
+    "rasgos": [
+      "'Anteojos': manchas oscuras alrededor de los ojos",
+      "Mezcla de blanco con bayo atigrado",
+      "Cabeza mayormente blanca"
+    ],
+    "ventajas": [
+      "Leche quesera",
+      "Buena canal de carne",
+      "Rústica"
+    ],
+    "desventajas": [
+      "Menos leche que Holstein"
+    ],
+    "dato": "Sus 'anteojos' reducen el reflejo del sol en los ojos.",
+    "colorPrincipal": "#F3EFE6",
+    "colorSecundario": "#6B4A2E",
+    "giba": false
+  },
+  {
+    "id": "brangus",
+    "nombre": "Brangus",
+    "otrosNombres": "",
+    "grupo": "sintetica",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Estados Unidos (3/8 Brahman × 5/8 Angus)",
+    "pelaje": "Negro sólido (existe Red Brangus)",
+    "cuernos": "Sin cuernos",
+    "pesoMachoKg": "800–1,000",
+    "pesoHembraKg": "500–650",
+    "clima": "Tropical y subtropical",
+    "descripcion": "Combina la calidad de carne del Angus con la rusticidad del Brahman. Muy usada en Centroamérica.",
+    "rasgos": [
+      "Negro uniforme",
+      "Sin cuernos",
+      "Giba pequeña",
+      "Orejas medianas algo caídas",
+      "Piel algo suelta en papada"
+    ],
+    "ventajas": [
+      "Carne de calidad en clima cálido",
+      "Buena fertilidad",
+      "Resistente a parásitos"
+    ],
+    "desventajas": [
+      "El color negro absorbe calor"
+    ],
+    "dato": "Si ves un animal negro, mocho y con una pequeña giba, probablemente es Brangus.",
+    "colorPrincipal": "#1F1D1B",
+    "colorSecundario": null,
+    "giba": true
+  },
+  {
+    "id": "santa_gertrudis",
+    "nombre": "Santa Gertrudis",
+    "otrosNombres": "",
+    "grupo": "sintetica",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Estados Unidos (King Ranch, Texas; ~3/8 Brahman × 5/8 Shorthorn)",
+    "pelaje": "Rojo cereza oscuro",
+    "cuernos": "Cortos o mocho",
+    "pesoMachoKg": "900–1,000",
+    "pesoHembraKg": "600–700",
+    "clima": "Tropical y subtropical",
+    "descripcion": "Primera raza bovina creada en EE.UU. Grande, rústica y de color rojo intenso.",
+    "rasgos": [
+      "Rojo cereza profundo",
+      "Piel suelta con pliegues en cuello",
+      "Giba pequeña",
+      "Orejas medianas caídas"
+    ],
+    "ventajas": [
+      "Tolera calor y garrapatas",
+      "Buena ganancia de peso",
+      "Dócil"
+    ],
+    "desventajas": [
+      "Fertilidad algo menor que otras sintéticas"
+    ],
+    "dato": "Toma su nombre de un antiguo terreno del King Ranch.",
+    "colorPrincipal": "#7E2A1B",
+    "colorSecundario": null,
+    "giba": true
+  },
+  {
+    "id": "beefmaster",
+    "nombre": "Beefmaster",
+    "otrosNombres": "",
+    "grupo": "sintetica",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Estados Unidos (~1/2 Brahman, 1/4 Hereford, 1/4 Shorthorn)",
+    "pelaje": "Variado: rojo, bayo, con o sin manchas blancas",
+    "cuernos": "Con cuernos o mocho",
+    "pesoMachoKg": "800–1,000",
+    "pesoHembraKg": "550–650",
+    "clima": "Tropical y seco",
+    "descripcion": "Seleccionada solo por rendimiento (fertilidad, peso, leche, conformación, rusticidad), no por color.",
+    "rasgos": [
+      "Color variable",
+      "Giba moderada",
+      "Orejas medianas",
+      "Cuerpo profundo"
+    ],
+    "ventajas": [
+      "Muy fértil",
+      "Buena madre",
+      "Rústica"
+    ],
+    "desventajas": [
+      "Apariencia poco uniforme"
+    ],
+    "dato": "Sus criadores seleccionaron por los 'seis esenciales' y nunca por el color.",
+    "colorPrincipal": "#A9552D",
+    "colorSecundario": "#F3EFE6",
+    "giba": true
+  },
+  {
+    "id": "simbrah",
+    "nombre": "Simbrah",
+    "otrosNombres": "",
+    "grupo": "sintetica",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Estados Unidos (5/8 Simmental × 3/8 Brahman)",
+    "pelaje": "Rojo o bayo con cara blanca; también negro",
+    "cuernos": "Cortos o mocho",
+    "pesoMachoKg": "900–1,100",
+    "pesoHembraKg": "600–700",
+    "clima": "Tropical",
+    "descripcion": "Une el crecimiento del Simmental con la adaptación del Brahman.",
+    "rasgos": [
+      "Cara blanca",
+      "Cuerpo rojo o bayo",
+      "Giba pequeña",
+      "Orejas medianas caídas"
+    ],
+    "ventajas": [
+      "Rápido crecimiento en calor",
+      "Buena leche materna"
+    ],
+    "desventajas": [
+      "Cara blanca sensible a problemas de ojo"
+    ],
+    "dato": "Es popular en México y Centroamérica.",
+    "colorPrincipal": "#B8672F",
+    "colorSecundario": "#F3EFE6",
+    "giba": true
+  },
+  {
+    "id": "girolando",
+    "nombre": "Girolando",
+    "otrosNombres": "Gir × Holstein",
+    "grupo": "sintetica",
+    "aptitudes": [
+      "leche"
+    ],
+    "origen": "Brasil (Gyr × Holstein; patrón 5/8 Holstein × 3/8 Gyr)",
+    "pelaje": "Negro y blanco, negro o moteado; variable",
+    "cuernos": "Cortos o ausentes",
+    "pesoMachoKg": "750–900",
+    "pesoHembraKg": "450–600",
+    "clima": "Tropical",
+    "descripcion": "La vaca lechera del trópico. Combina la producción del Holstein con la rusticidad del Gyr.",
+    "rasgos": [
+      "Manchas negras y blancas menos definidas",
+      "Orejas algo largas",
+      "Giba pequeña",
+      "Frente algo convexa"
+    ],
+    "ventajas": [
+      "Buena leche en calor",
+      "Resistente a garrapatas",
+      "Menor costo de alimentación"
+    ],
+    "desventajas": [
+      "Producción variable según grado de sangre"
+    ],
+    "dato": "Produce la mayor parte de la leche de Brasil.",
+    "colorPrincipal": "#F3EFE6",
+    "colorSecundario": "#1E1C1A",
+    "giba": true
+  },
+  {
+    "id": "senepol",
+    "nombre": "Senepol",
+    "otrosNombres": "",
+    "grupo": "sintetica",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Islas Vírgenes (Saint Croix; N'Dama × Red Poll)",
+    "pelaje": "Rojo, pelo muy corto y brillante",
+    "cuernos": "Sin cuernos",
+    "pesoMachoKg": "800–900",
+    "pesoHembraKg": "500–600",
+    "clima": "Tropical",
+    "descripcion": "Raza tropical sin sangre cebú. Tolera el calor gracias al gen 'slick' de pelo corto.",
+    "rasgos": [
+      "Rojo uniforme sin giba",
+      "Sin cuernos",
+      "Pelo extremadamente corto",
+      "Cuerpo mediano y profundo"
+    ],
+    "ventajas": [
+      "Tolera calor sin tener cebú",
+      "Carne tierna",
+      "Dócil y fértil"
+    ],
+    "desventajas": [
+      "Menos difundida"
+    ],
+    "dato": "El gen 'slick' del Senepol se está pasando a otras razas lecheras para darles tolerancia al calor.",
+    "colorPrincipal": "#98361F",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "reyna",
+    "nombre": "Reyna",
+    "otrosNombres": "Criollo Reyna",
+    "grupo": "criolla",
+    "aptitudes": [
+      "leche",
+      "doble"
+    ],
+    "origen": "Nicaragua",
+    "pelaje": "Rojo a bayo; pelo corto",
+    "cuernos": "Medianos, finos",
+    "pesoMachoKg": "500–600",
+    "pesoHembraKg": "350–450",
+    "clima": "Tropical seco centroamericano",
+    "descripcion": "Criollo lechero centroamericano, descendiente del ganado español. Es un recurso genético valioso para el trópico seco.",
+    "rasgos": [
+      "Color rojo o bayo uniforme",
+      "Cuerpo mediano y fino",
+      "Sin giba",
+      "Cuernos finos"
+    ],
+    "ventajas": [
+      "Rústico",
+      "Fértil",
+      "Buena leche en pasto"
+    ],
+    "desventajas": [
+      "Pocos animales puros",
+      "Producción menor que razas especializadas"
+    ],
+    "dato": "Se conserva en programas de rescate genético en Nicaragua y Costa Rica.",
+    "colorPrincipal": "#A5532C",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "romosinuano",
+    "nombre": "Romosinuano",
+    "otrosNombres": "",
+    "grupo": "criolla",
+    "aptitudes": [
+      "carne"
+    ],
+    "origen": "Colombia (valle del Sinú)",
+    "pelaje": "Rojo a bayo",
+    "cuernos": "Sin cuernos",
+    "pesoMachoKg": "600–700",
+    "pesoHembraKg": "400–450",
+    "clima": "Tropical cálido y húmedo",
+    "descripcion": "Criollo colombiano mocho, adaptado al trópico sin sangre cebú.",
+    "rasgos": [
+      "Sin cuernos",
+      "Rojo-bayo",
+      "Sin giba",
+      "Tamaño mediano"
+    ],
+    "ventajas": [
+      "Tolerante al calor",
+      "Dócil",
+      "Muy fértil"
+    ],
+    "desventajas": [
+      "Tamaño moderado"
+    ],
+    "dato": "Se ha exportado a EE.UU. y Venezuela para cruces tropicales.",
+    "colorPrincipal": "#B26434",
+    "colorSecundario": null,
+    "giba": false
+  },
+  {
+    "id": "bon",
+    "nombre": "Blanco Orejinegro",
+    "otrosNombres": "BON",
+    "grupo": "criolla",
+    "aptitudes": [
+      "doble"
+    ],
+    "origen": "Colombia",
+    "pelaje": "Blanco con orejas, hocico y pezuñas negras; piel negra",
+    "cuernos": "Medianos",
+    "pesoMachoKg": "550–650",
+    "pesoHembraKg": "380–450",
+    "clima": "Tropical de ladera",
+    "descripcion": "Criollo colombiano de doble propósito, muy resistente a parásitos.",
+    "rasgos": [
+      "Pelaje blanco",
+      "Orejas negras",
+      "Hocico negro",
+      "Sin giba"
+    ],
+    "ventajas": [
+      "Resistente a garrapatas",
+      "Rústico"
+    ],
+    "desventajas": [
+      "Pocos animales"
+    ],
+    "dato": "Su nombre lo dice todo: blanco con orejas negras.",
+    "colorPrincipal": "#EDEBE5",
+    "colorSecundario": "#1E1C1A",
+    "giba": false
+  }
+]

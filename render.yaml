@@ -1,0 +1,30 @@
+# Blueprint de Render: crea la base PostgreSQL y la API con un clic.
+# Render → New → Blueprint → elige este repositorio.
+databases:
+  - name: bobinapp-db
+    plan: free            # la base gratuita de Render caduca a los 30 días; para uso real cambia a un plan pago
+    databaseName: bobinapp
+    user: bobinapp
+    postgresMajorVersion: "16"
+
+services:
+  - type: web
+    name: bobinapp-api
+    runtime: node
+    plan: free            # se duerme tras 15 min sin uso; la primera petición tarda ~1 min en despertar
+    rootDir: backend
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start   # aplica las migraciones al arrancar
+    healthCheckPath: /api/salud
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bobinapp-db
+          property: connectionString   # URL interna: no necesita DATABASE_SSL
+      - key: ANTHROPIC_API_KEY
+        sync: false                    # Render la pide al crear el blueprint; no se guarda en el repo
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-4-5

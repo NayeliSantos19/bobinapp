@@ -1,0 +1,27 @@
+# Android / Gradle
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/captures/
+*.iml
+.kotlin/
+
+# Node
+backend/node_modules/
+backend/.env
+npm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Copias que guarda la app de Claude
+Claude outputs/
+
+# Archivos de Android Studio (Gemini / modernize)
+.github/modernize/
+
+# Zip de cambios descargado del chat
+bobinapp-cambios.zip
