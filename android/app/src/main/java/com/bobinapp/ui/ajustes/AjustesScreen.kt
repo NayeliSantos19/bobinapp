@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -31,6 +32,7 @@ import com.bobinapp.data.ConnectivityObserver
 import com.bobinapp.data.remote.ApiProvider
 import com.bobinapp.data.remote.CrearFincaRequest
 import com.bobinapp.data.repository.AjustesStore
+import com.bobinapp.data.repository.Tema
 import com.bobinapp.data.repository.HatoRepository
 import com.bobinapp.ui.components.Punto
 import com.bobinapp.ui.components.Seccion
@@ -114,6 +116,7 @@ class AjustesViewModel(
     fun desconectar() { ajustes.desconectar(); mensaje = "Finca desconectada. Tus datos siguen en el teléfono." }
     fun borrarDemo() = viewModelScope.launch { hato.borrarDemo(); mensaje = "Datos de ejemplo borrados." }
     fun cargarDemo() = viewModelScope.launch { hato.cargarDemo(); mensaje = "Datos de ejemplo cargados." }
+    fun cambiarTema(tema: Tema) = ajustes.cambiarTema(tema)
     fun revisarAlertas() { WorkScheduler.revisarAlertasAhora(contexto); mensaje = "Revisión de alertas en marcha." }
 }
 
@@ -129,6 +132,21 @@ fun AjustesScreen(onPedirPermisoNotificaciones: () -> Unit) {
 
     Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
         vm.mensaje?.let { Text(it, fontWeight = FontWeight.SemiBold) }
+        Seccion("Apariencia") {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Tema.entries.forEach { t ->
+                    FilterChip(
+                        selected = aj.tema == t,
+                        onClick = { vm.cambiarTema(t) },
+                        label = { Text(t.etiqueta) },
+                    )
+                }
+            }
+            Text(
+                if (aj.tema == Tema.SISTEMA) "Sigue el modo claro u oscuro de tu teléfono." else "El modo oscuro ahorra batería en pantallas OLED y cansa menos la vista de noche.",
+                style = MaterialTheme.typography.bodySmall,
+            )
+        }
         Seccion("Sincronización") {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Punto(if (!s.enLinea) sem.carne else if (s.pendientes > 0 || s.sincronizando) sem.hoy else sem.doble)

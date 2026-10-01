@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
+/** Apariencia elegida por el usuario. */
+enum class Tema(val etiqueta: String) { SISTEMA("Automático"), CLARO("Claro"), OSCURO("Oscuro") }
+
 data class Ajustes(
     val servidorUrl: String,
     val token: String?,
@@ -15,6 +18,7 @@ data class Ajustes(
     val cursor: Long,
     val ultimaSync: Long?,
     val descartadas: Set<String>,
+    val tema: Tema = Tema.SISTEMA,
 ) {
     val conectadoANube: Boolean get() = token != null
 }
@@ -33,6 +37,7 @@ class AjustesStore(context: Context) {
         cursor = prefs.getLong(K_CURSOR, 0L),
         ultimaSync = prefs.getLong(K_ULTIMA, 0L).takeIf { it > 0 },
         descartadas = prefs.getStringSet(K_DESCARTADAS, emptySet())?.toSet() ?: emptySet(),
+        tema = prefs.getString(K_TEMA, null)?.let { n -> Tema.entries.firstOrNull { it.name == n } } ?: Tema.SISTEMA,
     )
 
     @Synchronized
@@ -58,6 +63,7 @@ class AjustesStore(context: Context) {
     fun marcarSincronizado(momento: Long) = editar { putLong(K_ULTIMA, momento) }
     fun descartarAlerta(clave: String) = editar { putStringSet(K_DESCARTADAS, actual.descartadas + clave) }
     fun restaurarAlertas() = editar { remove(K_DESCARTADAS) }
+    fun cambiarTema(tema: Tema) = editar { putString(K_TEMA, tema.name) }
 
     var demoSembrado: Boolean
         get() = prefs.getBoolean(K_DEMO, false)
@@ -77,5 +83,6 @@ class AjustesStore(context: Context) {
         const val K_DESCARTADAS = "alertasDescartadas"
         const val K_NOTIFICADAS = "alertasNotificadas"
         const val K_DEMO = "demoSembrado"
+        const val K_TEMA = "tema"
     }
 }

@@ -25,6 +25,9 @@ App Android para la gestión de ganado bovino pensada para el campo: funciona si
 <td><img src="docs/capturas/reporte-pdf.png" alt="Reporte PDF de trazabilidad"></td>
 <td><img src="docs/capturas/movil-panel.png" alt="Vista en teléfono" width="260"></td>
 </tr>
+<tr>
+<td colspan="2"><img src="docs/capturas/modo-oscuro.png" alt="Modo oscuro"></td>
+</tr>
 </table>
 
 <sub>Capturas del prototipo web (`prototipo-web/`), que comparte diseño y reglas con la app Android.</sub>
@@ -50,6 +53,9 @@ Motor de reglas puro (`domain/AlertEngine.kt`) para celos, inseminación, diagn�
 ### 5. Fotos de cada animal
 Cada res puede tener su foto, tomada con la cámara a resolución completa o elegida de la galería. Se endereza según EXIF, se reduce a 1280 px y se guarda en el teléfono; se ve en la lista del hato, en la ficha y en el árbol genealógico. La foto también se sincroniza: viaja aparte de los datos (`PUT/GET /api/fotos/:id`) para no inflar cada descarga, y si se tomó sin señal se sube al volver la conexión.
 → `data/fotos/`, `ui/components/Fotos.kt`, `backend/src/routes/fotos.js`
+
+### Modo oscuro
+Automático (sigue al teléfono), claro u oscuro, a elección en **Ajustes → Apariencia**. Los colores de cada modo están definidos como tokens en `ui/theme/Theme.kt`, y la barra de estado se adapta al modo elegido.
 
 ### 6. Catálogo e identificación de razas
 33 razas (cebú, europeas, sintéticas y criollas) con ficha completa y foto de referencia. El escáner envía la foto a la API, que usa un modelo de visión y responde con la raza, la confianza, los rasgos observados y alternativas, y muestra un ejemplar típico de la raza para comparar.
