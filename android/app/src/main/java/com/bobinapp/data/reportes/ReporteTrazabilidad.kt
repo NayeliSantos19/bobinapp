@@ -55,7 +55,7 @@ object ReporteTrazabilidad {
     private fun n(v: Double, dec: Int = 0) = String.format(ES, "%,.${dec}f", v)
 
     fun generar(context: Context, d: Datos): File {
-        val titulo = fuente(context, R.font.zilla_slab_bold, Typeface.DEFAULT_BOLD)
+        val titulo = fuente(context, R.font.archivo_bold, Typeface.DEFAULT_BOLD)
         val texto = fuente(context, R.font.karla_regular, Typeface.DEFAULT)
         val negrita = fuente(context, R.font.karla_bold, Typeface.DEFAULT_BOLD)
         val logo = BitmapFactory.decodeResource(context.resources, R.drawable.ic_logo_vaca_ui)

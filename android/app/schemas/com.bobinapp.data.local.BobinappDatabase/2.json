@@ -1,0 +1,361 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "c92282177bb6652ee1acf0e7d1ee19a0",
+    "entities": [
+      {
+        "tableName": "animales",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `arete` TEXT NOT NULL, `nombre` TEXT, `sexo` TEXT NOT NULL, `razaId` TEXT, `razaTexto` TEXT, `nacimiento` TEXT NOT NULL, `madreId` TEXT, `padreId` TEXT, `padreExterno` TEXT, `castrado` INTEGER NOT NULL, `estado` TEXT NOT NULL, `notas` TEXT, `fotoActualizadaEn` INTEGER, `fotoLocalEn` INTEGER, `fotoPendiente` INTEGER NOT NULL DEFAULT 0, `eliminado` INTEGER NOT NULL, `actualizadoEn` INTEGER NOT NULL, `syncEstado` TEXT NOT NULL, `esDemo` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "arete",
+            "columnName": "arete",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sexo",
+            "columnName": "sexo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "razaId",
+            "columnName": "razaId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "razaTexto",
+            "columnName": "razaTexto",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nacimiento",
+            "columnName": "nacimiento",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "madreId",
+            "columnName": "madreId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "padreId",
+            "columnName": "padreId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "padreExterno",
+            "columnName": "padreExterno",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "castrado",
+            "columnName": "castrado",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "estado",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notas",
+            "columnName": "notas",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fotoActualizadaEn",
+            "columnName": "fotoActualizadaEn",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fotoLocalEn",
+            "columnName": "fotoLocalEn",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fotoPendiente",
+            "columnName": "fotoPendiente",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "eliminado",
+            "columnName": "eliminado",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actualizadoEn",
+            "columnName": "actualizadoEn",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "syncEstado",
+            "columnName": "syncEstado",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "esDemo",
+            "columnName": "esDemo",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_animales_madreId",
+            "unique": false,
+            "columnNames": [
+              "madreId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_animales_madreId` ON `${TABLE_NAME}` (`madreId`)"
+          },
+          {
+            "name": "index_animales_padreId",
+            "unique": false,
+            "columnNames": [
+              "padreId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_animales_padreId` ON `${TABLE_NAME}` (`padreId`)"
+          },
+          {
+            "name": "index_animales_arete",
+            "unique": false,
+            "columnNames": [
+              "arete"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_animales_arete` ON `${TABLE_NAME}` (`arete`)"
+          },
+          {
+            "name": "index_animales_syncEstado",
+            "unique": false,
+            "columnNames": [
+              "syncEstado"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_animales_syncEstado` ON `${TABLE_NAME}` (`syncEstado`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "eventos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `animalId` TEXT NOT NULL, `tipo` TEXT NOT NULL, `fecha` TEXT NOT NULL, `kg` REAL, `litros` REAL, `producto` TEXT, `dosis` TEXT, `diagnostico` TEXT, `proximaFecha` TEXT, `retiroDias` INTEGER, `costo` REAL, `toro` TEXT, `toroId` TEXT, `tecnico` TEXT, `resultado` TEXT, `criaId` TEXT, `nota` TEXT, `eliminado` INTEGER NOT NULL, `actualizadoEn` INTEGER NOT NULL, `syncEstado` TEXT NOT NULL, `esDemo` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "animalId",
+            "columnName": "animalId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fecha",
+            "columnName": "fecha",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kg",
+            "columnName": "kg",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "litros",
+            "columnName": "litros",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "producto",
+            "columnName": "producto",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dosis",
+            "columnName": "dosis",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "diagnostico",
+            "columnName": "diagnostico",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "proximaFecha",
+            "columnName": "proximaFecha",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "retiroDias",
+            "columnName": "retiroDias",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "costo",
+            "columnName": "costo",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "toro",
+            "columnName": "toro",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "toroId",
+            "columnName": "toroId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tecnico",
+            "columnName": "tecnico",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "resultado",
+            "columnName": "resultado",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "criaId",
+            "columnName": "criaId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nota",
+            "columnName": "nota",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "eliminado",
+            "columnName": "eliminado",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actualizadoEn",
+            "columnName": "actualizadoEn",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "syncEstado",
+            "columnName": "syncEstado",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "esDemo",
+            "columnName": "esDemo",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_eventos_animalId_fecha",
+            "unique": false,
+            "columnNames": [
+              "animalId",
+              "fecha"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_eventos_animalId_fecha` ON `${TABLE_NAME}` (`animalId`, `fecha`)"
+          },
+          {
+            "name": "index_eventos_tipo",
+            "unique": false,
+            "columnNames": [
+              "tipo"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_eventos_tipo` ON `${TABLE_NAME}` (`tipo`)"
+          },
+          {
+            "name": "index_eventos_syncEstado",
+            "unique": false,
+            "columnNames": [
+              "syncEstado"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_eventos_syncEstado` ON `${TABLE_NAME}` (`syncEstado`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c92282177bb6652ee1acf0e7d1ee19a0')"
+    ]
+  }
+}

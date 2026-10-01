@@ -3,7 +3,7 @@
 ## Tipografías
 | Fuente | Uso | Licencia |
 |---|---|---|
-| Zilla Slab (Mozilla) | Títulos | SIL Open Font License 1.1 |
+| Archivo (Omnibus-Type) | Títulos | SIL Open Font License 1.1 |
 | Karla (Jonny Pinhorn) | Texto | SIL Open Font License 1.1 |
 | IBM Plex Mono | Datos y aretes (solo prototipo web) | SIL Open Font License 1.1 |
 

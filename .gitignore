@@ -25,3 +25,6 @@ Claude outputs/
 
 # Zip de cambios descargado del chat
 bobinapp-cambios.zip
+
+# Android Studio (si se abre la carpeta raíz)
+.idea/

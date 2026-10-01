@@ -63,10 +63,10 @@ private val Oscuro = darkColorScheme(
     outline = Color(0xFF2E3933), error = Color(0xFFE38D6B),
 )
 
-/** Zilla Slab (títulos): letra con remates rectos, como la de los sacos de alimento y los hierros de marcar. */
-val ZillaSlab = FontFamily(
-    Font(R.font.zilla_slab_semibold, FontWeight.SemiBold),
-    Font(R.font.zilla_slab_bold, FontWeight.Bold),
+/** Archivo (títulos): sans serif robusta y algo angosta; se lee bien en mayúsculas y en números grandes. */
+val Archivo = FontFamily(
+    Font(R.font.archivo_semibold, FontWeight.SemiBold),
+    Font(R.font.archivo_bold, FontWeight.Bold),
 )
 
 /** Karla (texto): sans serif con carácter y muy legible en pantallas pequeñas. */
@@ -77,14 +77,14 @@ val Karla = FontFamily(
 
 private val base = Typography()
 private val Tipografia = Typography(
-    displayLarge = base.displayLarge.copy(fontFamily = ZillaSlab, fontWeight = FontWeight.Bold),
-    displayMedium = base.displayMedium.copy(fontFamily = ZillaSlab, fontWeight = FontWeight.Bold),
-    displaySmall = base.displaySmall.copy(fontFamily = ZillaSlab, fontWeight = FontWeight.Bold),
-    headlineLarge = base.headlineLarge.copy(fontFamily = ZillaSlab, fontWeight = FontWeight.Bold),
-    headlineMedium = TextStyle(fontFamily = ZillaSlab, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 0.3.sp),
-    headlineSmall = base.headlineSmall.copy(fontFamily = ZillaSlab, fontWeight = FontWeight.Bold),
-    titleLarge = base.titleLarge.copy(fontFamily = ZillaSlab, fontWeight = FontWeight.Bold, fontSize = 22.sp),
-    titleMedium = base.titleMedium.copy(fontFamily = ZillaSlab, fontWeight = FontWeight.SemiBold, fontSize = 17.sp),
+    displayLarge = base.displayLarge.copy(fontFamily = Archivo, fontWeight = FontWeight.Bold),
+    displayMedium = base.displayMedium.copy(fontFamily = Archivo, fontWeight = FontWeight.Bold),
+    displaySmall = base.displaySmall.copy(fontFamily = Archivo, fontWeight = FontWeight.Bold),
+    headlineLarge = base.headlineLarge.copy(fontFamily = Archivo, fontWeight = FontWeight.Bold),
+    headlineMedium = TextStyle(fontFamily = Archivo, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 0.3.sp),
+    headlineSmall = base.headlineSmall.copy(fontFamily = Archivo, fontWeight = FontWeight.Bold),
+    titleLarge = base.titleLarge.copy(fontFamily = Archivo, fontWeight = FontWeight.Bold, fontSize = 22.sp),
+    titleMedium = base.titleMedium.copy(fontFamily = Archivo, fontWeight = FontWeight.SemiBold, fontSize = 17.sp),
     titleSmall = base.titleSmall.copy(fontFamily = Karla, fontWeight = FontWeight.Bold),
     bodyLarge = base.bodyLarge.copy(fontFamily = Karla),
     bodyMedium = base.bodyMedium.copy(fontFamily = Karla),

@@ -56,7 +56,7 @@ Cada res puede tener su foto, tomada con la cámara a resolución completa o ele
 
 Las fotos de referencia se agregan en `fotos-razas/` y se preparan con `python herramientas/preparar_fotos_razas.py` (instrucciones y enlaces de búsqueda en [fotos-razas/LEEME.md](fotos-razas/LEEME.md)). Mientras falte la foto de una raza, la app muestra sus colores de pelaje.
 
-Más detalle y diagramas en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md). Tipografías (Zilla Slab y Karla) y licencias en [docs/LICENCIAS.md](docs/LICENCIAS.md).
+Más detalle y diagramas en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md). Tipografías (Archivo y Karla) y licencias en [docs/LICENCIAS.md](docs/LICENCIAS.md).
 
 ## Estructura
 
