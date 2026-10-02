@@ -1,5 +1,7 @@
 # Bobinapp
 
+[![CI](https://github.com/NayeliSantos19/bobinapp/actions/workflows/ci.yml/badge.svg)](https://github.com/NayeliSantos19/bobinapp/actions/workflows/ci.yml)
+
 App Android para la gestión de ganado bovino pensada para el campo: funciona sin señal, lleva la trazabilidad y genealogía de cada res, muestra analíticas del hato, avisa de celos, partos y dosis pendientes, e identifica la raza de un animal con una foto.
 
 | | |
@@ -8,7 +10,7 @@ App Android para la gestión de ganado bovino pensada para el campo: funciona si
 | **API** | Node.js 22 · Express · PostgreSQL 16 · zod |
 | **Pruebas** | JUnit (reglas de negocio), pruebas instrumentadas de Room, pruebas de integración de la API contra PostgreSQL real |
 | **Despliegue** | Render (blueprint `render.yaml`) o Docker Compose |
-| **CI** | GitHub Actions (`docs/ci-github-actions.yml`; cópialo a `.github/workflows/ci.yml` al subir a GitHub) |
+| **CI** | GitHub Actions (`.github/workflows/ci.yml`): pruebas de la API contra PostgreSQL y compilación + pruebas de la app en cada push |
 
 ![Panel de analíticas](docs/capturas/panel.png)
 
@@ -130,24 +132,21 @@ Para el escáner de razas, define `ANTHROPIC_API_KEY` en `.env` (o como variable
 
 El repositorio trae un *blueprint* (`render.yaml`) que crea la base PostgreSQL y la API juntas.
 
-1. Sube el proyecto a GitHub (ver abajo).
-2. En [render.com](https://render.com): **New → Blueprint**, elige el repositorio y confirma.
-3. Cuando lo pida, pega tu `ANTHROPIC_API_KEY` (solo hace falta para el escáner).
-4. Al terminar, abre `https://<tu-servicio>.onrender.com/api/salud`. Las migraciones se aplican solas al arrancar.
-5. En la app: **Ajustes → Dirección de la API** con esa URL y **Crear finca y conectar**.
+1. En [render.com](https://render.com): **New → Blueprint**, elige el repositorio y confirma.
+2. Cuando lo pida, pega tu `ANTHROPIC_API_KEY` (solo hace falta para el escáner).
+3. Al terminar, abre `https://<tu-servicio>.onrender.com/api/salud`. Las migraciones se aplican solas al arrancar.
+4. En la app: **Ajustes → Dirección de la API** con esa URL y **Crear finca y conectar**.
 
 Notas del plan gratuito: la API se duerme tras 15 minutos sin uso (la primera petición tarda cerca de un minuto) y la base gratuita caduca a los 30 días. Las fotos se guardan en PostgreSQL, así que no se necesita disco aparte.
 
 ¿Otra base (Neon, Supabase)? Pon su URL en `DATABASE_URL` y `DATABASE_SSL=true`.
 
-## Subir a GitHub
+## Código fuente
+
+Repositorio: [github.com/NayeliSantos19/bobinapp](https://github.com/NayeliSantos19/bobinapp)
 
 ```bash
-git remote add origin https://github.com/<tu-usuario>/bobinapp.git
-git push -u origin main
-# Activa la CI:
-mkdir -p .github/workflows && cp docs/ci-github-actions.yml .github/workflows/ci.yml
-git add .github && git commit -m "CI de GitHub Actions" && git push
+git clone https://github.com/NayeliSantos19/bobinapp.git
 ```
 
 ## Pruebas
