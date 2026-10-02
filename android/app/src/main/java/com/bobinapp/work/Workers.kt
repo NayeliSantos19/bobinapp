@@ -14,9 +14,10 @@ import androidx.work.WorkerParameters
 import com.bobinapp.BobinappApp
 import com.bobinapp.data.repository.ResultadoSync
 import com.bobinapp.domain.AlertEngine
-import com.bobinapp.domain.Severidad
+import com.bobinapp.domain.PoliticaNotificaciones
 import java.io.IOException
 import java.time.LocalDate
+import java.time.LocalTime
 import java.util.concurrent.TimeUnit
 import retrofit2.HttpException
 
@@ -47,16 +48,33 @@ class SyncWorker(contexto: Context, params: WorkerParameters) : CoroutineWorker(
 class AlertWorker(contexto: Context, params: WorkerParameters) : CoroutineWorker(contexto, params) {
     override suspend fun doWork(): Result {
         val container = (applicationContext as BobinappApp).container
-        val ajustes = container.ajustes
+        val aj = container.ajustes.actual
         val alertas = AlertEngine.calcular(container.hato.todosConEventos(), LocalDate.now())
-            .filter { it.clave !in ajustes.actual.descartadas }
-        val urgentes = alertas.filter { it.severidad == Severidad.VENCIDA || it.severidad == Severidad.HOY }
-        val yaNotificadas = ajustes.alertasNotificadas
-        val nuevas = urgentes.filter { it.clave !in yaNotificadas }
-        if (nuevas.isNotEmpty()) NotificationHelper.notificarAlertas(applicationContext, nuevas)
-        // Solo recordamos las que siguen vigentes, así el conjunto no crece sin límite.
-        ajustes.alertasNotificadas = urgentes.map { it.clave }.toSet()
+            .filter { it.clave !in aj.descartadas }
+        val decision = PoliticaNotificaciones.decidir(
+            alertas = alertas,
+            yaNotificadas = container.ajustes.alertasNotificadas,
+            categoriasApagadas = aj.notifApagadas,
+            silencioNocturno = aj.silencioNocturno,
+            hora = LocalTime.now().hour,
+        )
+        if (decision.notificar.isNotEmpty()) NotificationHelper.notificarAlertas(applicationContext, decision.notificar)
+        container.ajustes.alertasNotificadas = decision.recordar
         return Result.success()
+    }
+}
+
+/** Envía la analítica anónima pendiente. Solo corre con red y nunca molesta si falla. */
+class TelemetriaWorker(contexto: Context, params: WorkerParameters) : CoroutineWorker(contexto, params) {
+    override suspend fun doWork(): Result {
+        val analitica = (applicationContext as BobinappApp).container.analitica
+        return try {
+            if (analitica.enviar()) Result.success() else Result.retry()
+        } catch (e: IOException) {
+            Result.retry()
+        } catch (e: HttpException) {
+            Result.success()
+        }
     }
 }
 
@@ -65,6 +83,8 @@ object WorkScheduler {
     private const val SYNC_PERIODICA = "sync-periodica"
     private const val ALERTAS_PERIODICAS = "alertas-periodicas"
     private const val ALERTAS_AHORA = "alertas-ahora"
+    private const val TELEMETRIA = "telemetria"
+    private const val TELEMETRIA_AHORA = "telemetria-ahora"
 
     private val conRed = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 
@@ -94,6 +114,19 @@ object WorkScheduler {
         wm.enqueueUniquePeriodicWork(
             ALERTAS_PERIODICAS, ExistingPeriodicWorkPolicy.KEEP,
             PeriodicWorkRequestBuilder<AlertWorker>(6, TimeUnit.HOURS).build(),
+        )
+        wm.enqueueUniquePeriodicWork(
+            TELEMETRIA, ExistingPeriodicWorkPolicy.KEEP,
+            PeriodicWorkRequestBuilder<TelemetriaWorker>(12, TimeUnit.HOURS).setConstraints(conRed).build(),
+        )
+    }
+
+    /** Se llama cuando la app pasa a segundo plano: buen momento para enviar sin estorbar. */
+    fun enviarTelemetria(context: Context) {
+        WorkManager.getInstance(context).enqueueUniqueWork(
+            TELEMETRIA_AHORA, ExistingWorkPolicy.KEEP,
+            OneTimeWorkRequestBuilder<TelemetriaWorker>().setConstraints(conRed)
+                .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 1, TimeUnit.MINUTES).build(),
         )
     }
 

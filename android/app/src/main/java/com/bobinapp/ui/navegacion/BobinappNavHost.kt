@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
@@ -18,6 +19,7 @@ import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -52,6 +54,7 @@ import com.bobinapp.ui.ajustes.AjustesScreen
 import com.bobinapp.ui.ajustes.EstadoSync
 import com.bobinapp.ui.ajustes.observarEstadoSync
 import com.bobinapp.ui.alertas.AlertasScreen
+import com.bobinapp.ui.ayuda.AyudaScreen
 import com.bobinapp.ui.components.Punto
 import com.bobinapp.ui.escaner.EscanerScreen
 import com.bobinapp.ui.formularios.AnimalFormScreen
@@ -67,6 +70,7 @@ import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 
 object Rutas {
     const val PANEL = "panel"
@@ -75,6 +79,7 @@ object Rutas {
     const val ALERTAS = "alertas"
     const val AJUSTES = "ajustes"
     const val ESCANER = "escaner"
+    const val AYUDA = "ayuda"
     const val ANIMAL = "animal/{id}"
     const val ANIMAL_FORM = "animal_form?id={id}&raza={raza}"
     const val EVENTO = "evento?ids={ids}&tipo={tipo}&producto={producto}&dosis={dosis}"
@@ -124,6 +129,11 @@ fun BobinappNavHost(destinoInicial: String?, onDestinoConsumido: () -> Unit, onP
     val rutaActual = entrada?.destination?.route
     val esPestana = PESTANAS.any { it.ruta == rutaActual }
 
+    // Analítica anónima: solo el nombre de la pantalla ("animal", no el id del animal).
+    LaunchedEffect(rutaActual) {
+        rutaActual?.let { r -> withContext(Dispatchers.IO) { c.analitica.pantalla(r.substringBefore('/').substringBefore('?')) } }
+    }
+
     Scaffold(
         topBar = {
             if (esPestana) TopAppBar(
@@ -133,7 +143,10 @@ fun BobinappNavHost(destinoInicial: String?, onDestinoConsumido: () -> Unit, onP
                         Text(PESTANAS.first { it.ruta == rutaActual }.etiqueta, fontWeight = FontWeight.Bold)
                     }
                 },
-                actions = { IndicadorSync(sync) { irAPestana(nav, Rutas.AJUSTES) } },
+                actions = {
+                    IndicadorSync(sync) { irAPestana(nav, Rutas.AJUSTES) }
+                    IconButton(onClick = { nav.navigate(Rutas.AYUDA) }) { Icon(Icons.Outlined.Info, contentDescription = "Ayuda") }
+                },
             )
         },
         bottomBar = {
@@ -169,7 +182,8 @@ fun BobinappNavHost(destinoInicial: String?, onDestinoConsumido: () -> Unit, onP
                     onRegistrarParto = { nav.navigate(Rutas.parto(it)) },
                 )
             }
-            composable(Rutas.AJUSTES) { AjustesScreen(onPedirPermisoNotificaciones) }
+            composable(Rutas.AJUSTES) { AjustesScreen(onPedirPermisoNotificaciones, onAbrirAyuda = { nav.navigate(Rutas.AYUDA) }) }
+            composable(Rutas.AYUDA) { AyudaScreen(onAtras = { nav.popBackStack() }) }
             composable(Rutas.ESCANER) {
                 EscanerScreen(onAtras = { nav.popBackStack() }, onVerRaza = { nav.navigate(Rutas.raza(it)) },
                     onAgregarAlHato = { nav.navigate(Rutas.animalForm(raza = it)) })
@@ -231,6 +245,6 @@ private fun IndicadorSync(s: EstadoSync, onClick: () -> Unit) {
                 Text(s.texto)
             }
         },
-        modifier = Modifier.padding(end = 8.dp),
+        modifier = Modifier.padding(end = 4.dp),
     )
 }

@@ -1,10 +1,12 @@
 package com.bobinapp.data.remote
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonPrimitive
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -36,7 +38,30 @@ interface BobinappApi {
 
     @GET("api/fotos/{animalId}")
     suspend fun bajarFoto(@Path("animalId") animalId: String): Response<ResponseBody>
+
+    /** Analítica anónima: no lleva el token de la finca (ver ApiProvider). */
+    @POST("api/telemetria")
+    suspend fun telemetria(@Body lote: LoteTelemetriaRequest): Response<Unit>
+
+    @DELETE("api/telemetria/{instalacion}")
+    suspend fun borrarTelemetria(@Path("instalacion") instalacion: String): Response<Unit>
 }
+
+@Serializable
+data class EventoTelemetriaDto(
+    val evento: String,
+    val pantalla: String? = null,
+    val datos: Map<String, JsonPrimitive> = emptyMap(),
+    val ocurridoEn: Long,
+)
+
+@Serializable
+data class LoteTelemetriaRequest(
+    val instalacion: String,
+    val appVersion: String,
+    val android: Int,
+    val eventos: List<EventoTelemetriaDto>,
+)
 
 @Serializable
 data class AnimalDto(

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android 12+: qué entra en la copia de seguridad de Google y en el paso a otro teléfono.
+    El hato (base Room y fotos) sí se respalda. Las preferencias no: el token va cifrado con una llave
+    del Keystore que no viaja a otro teléfono, así que copiarlo no serviría; se vuelve a conectar la finca.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="bobinapp_ajustes.xml" />
+        <exclude domain="file" path="telemetria.jsonl" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="bobinapp_ajustes.xml" />
+        <exclude domain="file" path="telemetria.jsonl" />
+    </device-transfer>
+</data-extraction-rules>

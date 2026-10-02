@@ -8,6 +8,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.material3.Switch
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.remember
+import androidx.compose.ui.semantics.Role
+import com.bobinapp.data.analitica.Analitica
+import com.bobinapp.data.seguridad.Biometria
+import com.bobinapp.domain.PoliticaNotificaciones
+import com.bobinapp.ui.seguridad.LocalPedirIdentidad
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
@@ -82,6 +91,7 @@ class AjustesViewModel(
     private val ajustes: AjustesStore,
     private val api: ApiProvider,
     red: ConnectivityObserver,
+    private val analitica: Analitica,
 ) : ViewModel() {
     val ajustesEstado = ajustes.estado
     val sync = observarEstadoSync(contexto, hato, ajustes, red)
@@ -116,13 +126,29 @@ class AjustesViewModel(
     fun desconectar() { ajustes.desconectar(); mensaje = "Finca desconectada. Tus datos siguen en el teléfono." }
     fun borrarDemo() = viewModelScope.launch { hato.borrarDemo(); mensaje = "Datos de ejemplo borrados." }
     fun cargarDemo() = viewModelScope.launch { hato.cargarDemo(); mensaje = "Datos de ejemplo cargados." }
-    fun cambiarTema(tema: Tema) = ajustes.cambiarTema(tema)
+    fun cambiarTema(tema: Tema) { ajustes.cambiarTema(tema); analitica.accion("tema", mapOf("modo" to tema.name.lowercase())) }
+    fun cambiarBloqueo(activo: Boolean) {
+        ajustes.cambiarBloqueo(activo)
+        analitica.accion("bloqueo", mapOf("activo" to activo))
+        mensaje = if (activo) "Bloqueo activado. Se pedirá al abrir la app y tras 1 minuto fuera." else "Bloqueo desactivado."
+    }
+    fun cambiarNotificacion(categoria: String, activa: Boolean) = ajustes.cambiarNotificacion(categoria, activa)
+    fun cambiarSilencioNocturno(activo: Boolean) = ajustes.cambiarSilencioNocturno(activo)
+    fun cambiarEstadisticas(activas: Boolean) {
+        if (!activas) analitica.borrarCola()
+        ajustes.cambiarEstadisticas(activas)
+    }
+    fun borrarMisEstadisticas() = viewModelScope.launch {
+        mensaje = if (analitica.borrarMisDatos()) "Se borraron tus estadísticas del servidor." else
+            "No se pudo contactar al servidor. Lo pendiente en el teléfono sí se borró."
+    }
     fun revisarAlertas() { WorkScheduler.revisarAlertasAhora(contexto); mensaje = "Revisión de alertas en marcha." }
 }
 
 @Composable
-fun AjustesScreen(onPedirPermisoNotificaciones: () -> Unit) {
-    val vm = appViewModel { c, _ -> AjustesViewModel(c.contexto, c.hato, c.ajustes, c.apiProvider, c.conectividad) }
+fun AjustesScreen(onPedirPermisoNotificaciones: () -> Unit, onAbrirAyuda: () -> Unit) {
+    val vm = appViewModel { c, _ -> AjustesViewModel(c.contexto, c.hato, c.ajustes, c.apiProvider, c.conectividad, c.analitica) }
+    val pedirIdentidad = LocalPedirIdentidad.current
     val aj by vm.ajustesEstado.collectAsStateWithLifecycle()
     val s by vm.sync.collectAsStateWithLifecycle()
     val sem = LocalSemanticos.current
@@ -145,6 +171,29 @@ fun AjustesScreen(onPedirPermisoNotificaciones: () -> Unit) {
             Text(
                 if (aj.tema == Tema.SISTEMA) "Sigue el modo claro u oscuro de tu teléfono." else "El modo oscuro ahorra batería en pantallas OLED y cansa menos la vista de noche.",
                 style = MaterialTheme.typography.bodySmall,
+            )
+        }
+        Seccion("Seguridad") {
+            val disponible = remember { Biometria.disponibilidad(contexto) }
+            FilaInterruptor(
+                titulo = "Bloquear con huella o rostro",
+                detalle = when (disponible) {
+                    Biometria.Disponibilidad.LISTA -> "Pide tu huella, rostro o PIN al abrir la app."
+                    Biometria.Disponibilidad.SIN_CONFIGURAR -> "Primero configura una huella o un PIN en los ajustes del teléfono."
+                    Biometria.Disponibilidad.NO_SOPORTADA -> "Este teléfono no tiene huella ni bloqueo de pantalla."
+                },
+                activo = aj.bloqueo,
+                habilitado = disponible == Biometria.Disponibilidad.LISTA || aj.bloqueo,
+                // Para activarlo o quitarlo hay que confirmar que es el dueño del teléfono.
+                onCambio = { nuevo ->
+                    // Sin huella ni PIN en el teléfono no hay con qué confirmar: solo se permite quitarlo.
+                    if (disponible != Biometria.Disponibilidad.LISTA) { if (!nuevo) vm.cambiarBloqueo(false) }
+                    else pedirIdentidad(if (nuevo) "Activar bloqueo" else "Quitar bloqueo") { vm.cambiarBloqueo(nuevo) }
+                },
+            )
+            Text(
+                "El token de tu finca se guarda cifrado con una llave del Android Keystore y la app solo se conecta al servidor por HTTPS.",
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
         Seccion("Sincronización") {
@@ -173,14 +222,50 @@ fun AjustesScreen(onPedirPermisoNotificaciones: () -> Unit) {
                 Button(onClick = { vm.crearFinca(finca) }, enabled = !vm.ocupado) { Text(if (vm.ocupado) "Conectando…" else "Crear finca y conectar") }
             }
         }
-        Seccion("Alertas") {
+        Seccion("Notificaciones") {
             if (!NotificationHelper.puedeNotificar(contexto)) {
-                Text("Las notificaciones están desactivadas.")
+                Text("Las notificaciones están desactivadas para Bobinapp.")
                 Button(onClick = onPedirPermisoNotificaciones) { Text("Permitir notificaciones") }
             } else {
-                Text("Las alertas urgentes llegan como notificación. Se revisan cada 6 horas en segundo plano.")
+                Text("Solo avisan lo vencido o para hoy, y nunca dos veces por lo mismo. Se revisan cada 6 horas.",
+                    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
-            OutlinedButton(onClick = vm::revisarAlertas) { Text("Revisar alertas ahora") }
+            PoliticaNotificaciones.CATEGORIAS.forEach { cat ->
+                FilaInterruptor(
+                    titulo = cat,
+                    detalle = when (cat) {
+                        "Reproducción" -> "Celos, inseminación, preñez, partos y secado"
+                        "Salud" -> "Dosis de vacunas y tratamientos, retiro de leche"
+                        else -> "Destetes y pesajes pendientes"
+                    },
+                    activo = cat !in aj.notifApagadas,
+                    onCambio = { vm.cambiarNotificacion(cat, it) },
+                )
+            }
+            FilaInterruptor(
+                titulo = "Silencio de noche",
+                detalle = "Nada entre las 9 p. m. y las 6 a. m.; los avisos llegan en la mañana.",
+                activo = aj.silencioNocturno,
+                onCambio = vm::cambiarSilencioNocturno,
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(onClick = vm::revisarAlertas) { Text("Revisar ahora") }
+                TextButton(onClick = { NotificationHelper.abrirAjustesDelSistema(contexto) }) { Text("Ajustes de Android") }
+            }
+        }
+        Seccion("Privacidad") {
+            FilaInterruptor(
+                titulo = "Enviar estadísticas anónimas",
+                detalle = "Qué pantallas se usan, cuánto tarda en abrir y qué errores ocurren. Nunca datos de tus animales ni de tu finca.",
+                activo = aj.estadisticas,
+                onCambio = vm::cambiarEstadisticas,
+            )
+            TextButton(onClick = { vm.borrarMisEstadisticas() }) { Text("Borrar mis estadísticas del servidor") }
+        }
+        Seccion("Ayuda") {
+            Text("Guía rápida, preguntas frecuentes, privacidad y reporte de problemas.",
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            OutlinedButton(onClick = onAbrirAyuda) { Text("Abrir ayuda y soporte") }
         }
         Seccion("Datos de ejemplo") {
             Text("Los animales de ejemplo nunca se suben a la nube.", style = MaterialTheme.typography.bodySmall)
@@ -189,5 +274,28 @@ fun AjustesScreen(onPedirPermisoNotificaciones: () -> Unit) {
                 OutlinedButton(onClick = { vm.cargarDemo() }) { Text("Cargar ejemplo") }
             }
         }
+    }
+}
+
+/** Fila con título, explicación y un interruptor a la derecha. Toda la fila es tocable. */
+@Composable
+private fun FilaInterruptor(
+    titulo: String,
+    detalle: String,
+    activo: Boolean,
+    onCambio: (Boolean) -> Unit,
+    habilitado: Boolean = true,
+) {
+    Row(
+        Modifier.fillMaxWidth().toggleable(value = activo, enabled = habilitado, role = Role.Switch, onValueChange = onCambio),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(titulo, fontWeight = FontWeight.SemiBold)
+            Text(detalle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        // onCheckedChange = null: el toque lo maneja la fila completa (mejor para accesibilidad).
+        Switch(checked = activo, onCheckedChange = null, enabled = habilitado)
     }
 }

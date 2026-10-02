@@ -26,5 +26,7 @@ services:
           property: connectionString   # URL interna: no necesita DATABASE_SSL
       - key: ANTHROPIC_API_KEY
         sync: false                    # Render la pide al crear el blueprint; no se guarda en el repo
+      - key: ADMIN_TOKEN
+        generateValue: true            # clave para GET /api/telemetria/resumen; cópiala desde el panel de Render
       - key: ANTHROPIC_MODEL
         value: claude-sonnet-4-5

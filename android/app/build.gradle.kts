@@ -14,15 +14,19 @@ android {
         applicationId = "com.bobinapp"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         // 10.0.2.2 es la computadora anfitriona vista desde el emulador de Android.
         buildConfigField("String", "API_URL_POR_DEFECTO", "\"http://10.0.2.2:3000/\"")
+        // Correo al que llegan los reportes de "Ayuda → Reportar un problema". Cámbialo por el tuyo.
+        buildConfigField("String", "SOPORTE_EMAIL", "\"soporte@bobinapp.app\"")
     }
 
     buildTypes {
         release {
+            // En producción la app solo habla con la API por HTTPS (ver render.yaml).
+            buildConfigField("String", "API_URL_POR_DEFECTO", "\"https://bobinapp-api.onrender.com/\"")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -62,6 +66,8 @@ dependencies {
     implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.exifinterface)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.biometric)
 
     // Base de datos local
     implementation(libs.androidx.room.runtime)

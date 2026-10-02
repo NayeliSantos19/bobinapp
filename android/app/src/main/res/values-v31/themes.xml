@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- El tema visual real está en Compose (ui/theme). Este solo cubre la ventana. -->
     <style name="Theme.Bobinapp" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/ic_launcher_background</item>
     </style>
 
-    <!--
-        Pantalla inicial: logo de la vaca sobre el verde de la marca. Usa la API oficial SplashScreen
-        (androidx.core:core-splashscreen), que en Android 12+ es la del sistema y en versiones anteriores
-        se ve igual. MainActivity la mantiene solo hasta que el hato está cargado (tope de 2 s).
-    -->
+    <!-- Android 12+: además del logo, el nombre de la app abajo (imagen de marca de 200×80 dp). -->
     <style name="Theme.Bobinapp.Arranque" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/ic_launcher_background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo_vaca</item>
         <item name="postSplashScreenTheme">@style/Theme.Bobinapp</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/splash_marca</item>
     </style>
 </resources>

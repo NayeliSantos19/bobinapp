@@ -46,6 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bobinapp.data.analitica.Analitica
 import com.bobinapp.data.remote.ApiProvider
 import com.bobinapp.data.remote.IdentificacionDto
 import com.bobinapp.data.remote.IdentificarRequest
@@ -68,7 +69,12 @@ sealed interface EstadoEscaner {
     data class Error(val mensaje: String) : EstadoEscaner
 }
 
-class EscanerViewModel(private val api: ApiProvider, private val ajustes: AjustesStore, val razas: RazasRepository) : ViewModel() {
+class EscanerViewModel(
+    private val api: ApiProvider,
+    private val ajustes: AjustesStore,
+    val razas: RazasRepository,
+    private val analitica: Analitica,
+) : ViewModel() {
     var foto by mutableStateOf<Bitmap?>(null); private set
     var estado by mutableStateOf<EstadoEscaner>(EstadoEscaner.Inicial); private set
 
@@ -84,7 +90,10 @@ class EscanerViewModel(private val api: ApiProvider, private val ajustes: Ajuste
         viewModelScope.launch {
             estado = try {
                 val base64 = withContext(Dispatchers.Default) { comprimir(b) }
-                EstadoEscaner.Resultado(api.api().identificar(IdentificarRequest(base64, "image/jpeg")))
+                val r = api.api().identificar(IdentificarRequest(base64, "image/jpeg"))
+                // Solo qué tan seguro estuvo el modelo y si era un bovino; nunca la foto ni la raza del animal del usuario.
+                analitica.accion("escaneo", mapOf("confianza" to r.confianza, "bovino" to r.esBovino))
+                EstadoEscaner.Resultado(r)
             } catch (e: IOException) {
                 EstadoEscaner.Error("Sin conexión con el servidor. El escáner necesita internet; el resto de la app funciona sin señal.")
             } catch (e: HttpException) {
@@ -105,7 +114,7 @@ class EscanerViewModel(private val api: ApiProvider, private val ajustes: Ajuste
 
 @Composable
 fun EscanerScreen(onAtras: () -> Unit, onVerRaza: (String) -> Unit, onAgregarAlHato: (String) -> Unit) {
-    val vm = appViewModel { c, _ -> EscanerViewModel(c.apiProvider, c.ajustes, c.razas) }
+    val vm = appViewModel { c, _ -> EscanerViewModel(c.apiProvider, c.ajustes, c.razas, c.analitica) }
     val contexto = LocalContext.current
     var aviso by androidx.compose.runtime.remember { mutableStateOf<String?>(null) }
     val camara = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { it?.let(vm::ponerFoto) }

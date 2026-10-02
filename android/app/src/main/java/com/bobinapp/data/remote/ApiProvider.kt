@@ -27,7 +27,9 @@ class ApiProvider(private val ajustes: AjustesStore) {
         .readTimeout(90, TimeUnit.SECONDS)
         .addInterceptor { chain ->
             val token = ajustes.actual.token
-            val peticion = if (token != null) {
+            // La analítica es anónima: nunca se le adjunta el token de la finca.
+            val anonima = chain.request().url.encodedPath.contains("/api/telemetria")
+            val peticion = if (token != null && !anonima) {
                 chain.request().newBuilder().header("Authorization", "Bearer $token").build()
             } else {
                 chain.request()

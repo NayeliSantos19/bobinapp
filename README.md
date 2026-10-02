@@ -62,6 +62,15 @@ Automático (sigue al teléfono), claro u oscuro, a elección en **Ajustes → A
 
 Las fotos de referencia se agregan en `fotos-razas/` y se preparan con `python herramientas/preparar_fotos_razas.py` (instrucciones y enlaces de búsqueda en [fotos-razas/LEEME.md](fotos-razas/LEEME.md)). Mientras falte la foto de una raza, la app muestra sus colores de pelaje.
 
+### 7. Seguridad, privacidad y soporte
+- **Pantalla inicial** con la API oficial SplashScreen: logo sobre el verde de la marca, que se mantiene solo hasta que el hato está cargado (tope de 2 s). La app mide su propio tiempo de arranque.
+- **Token cifrado** con AES-256-GCM y una llave del Android Keystore; **bloqueo opcional con huella, rostro o PIN** (BiometricPrompt); solo HTTPS en la versión publicada; copia de seguridad sin credenciales.
+- **API endurecida:** límite de peticiones por IP, cabeceras de seguridad y comparación de claves en tiempo constante.
+- **Notificaciones configurables:** un canal de Android por categoría (reproducción, salud, manejo), interruptores propios y silencio nocturno. La lógica de qué notificar es pura y está probada (`PoliticaNotificaciones`).
+- **Ayuda y soporte:** guía rápida, preguntas frecuentes, resumen de privacidad y "Reportar un problema", que abre el correo con los datos técnicos ya escritos.
+- **Analítica propia y anónima**, sin Google: pantallas, acciones clave, tiempo de arranque y errores (tipo y línea). Se guarda en una cola local y se envía en lotes con WorkManager. El usuario puede apagarla y borrar lo enviado. El resumen sale de `GET /api/telemetria/resumen`.
+→ `data/seguridad/`, `data/analitica/`, `ui/ayuda/`, `backend/src/routes/telemetria.js`, [docs/PRIVACIDAD.md](docs/PRIVACIDAD.md)
+
 Más detalle y diagramas en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md). Tipografías (Archivo y Karla) y licencias en [docs/LICENCIAS.md](docs/LICENCIAS.md).
 
 ## Estructura
@@ -77,7 +86,7 @@ Bobinapp/
 │       │   ├── di/          Contenedor de dependencias
 │       │   └── ui/          Pantallas Compose por funcionalidad
 │       ├── test/            Pruebas unitarias JVM
-│       └── androidTest/     Pruebas de Room en dispositivo
+│       └── androidTest/     Pruebas de Room y del cifrado en dispositivo
 ├── backend/                 API REST + migraciones SQL + pruebas
 ├── docs/                    Arquitectura, diagramas y flujo de CI
 ├── fotos-razas/             Fotos de referencia por raza (entrada del script)
@@ -168,8 +177,11 @@ cd android
 | PUT | `/api/fotos/:animalId` | Sube la foto de un animal (JPEG/PNG/WebP, máx. 3 MB, cabecera `X-Foto-Actualizada-En`) |
 | GET | `/api/fotos/:animalId` | Descarga la foto de un animal |
 | GET | `/api/razas` | Catálogo de razas |
+| POST | `/api/telemetria` | Lote de eventos de uso anónimos (sin token, máx. 200 por lote) |
+| DELETE | `/api/telemetria/:instalacion` | Borra las estadísticas de una instalación |
+| GET | `/api/telemetria/resumen?dias=7` | Resumen de uso y errores (requiere `ADMIN_TOKEN`) |
 
-Todas las rutas salvo `/api/salud`, `/api/razas` y `POST /api/fincas` requieren `Authorization: Bearer <token>`.
+Las rutas de datos de la finca requieren `Authorization: Bearer <token>`. No lo requieren `/api/salud`, `/api/razas`, `POST /api/fincas` ni la telemetría anónima, y el resumen de telemetría usa su propia clave de administrador.
 
 ## Próximos pasos
 - Cuentas de usuario con varios trabajadores por finca y permisos.

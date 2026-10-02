@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 y anteriores: mismas reglas que reglas_respaldo.xml. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="bobinapp_ajustes.xml" />
+    <exclude domain="file" path="telemetria.jsonl" />
+</full-backup-content>

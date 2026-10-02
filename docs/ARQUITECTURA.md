@@ -169,6 +169,42 @@ El archivo se guarda en `cacheDir/reportes/` y se comparte con `FileProvider` e 
 
 `AlertWorker` corre cada 6 horas (y después de cada cambio local) y notifica solo lo vencido o para hoy.
 
+## Arranque
+
+`MainActivity` instala la pantalla inicial (`androidx.core:core-splashscreen`) antes de `super.onCreate` y la mantiene con `setKeepOnScreenCondition` solo hasta que Room entrega el hato, con un tope de 2 s. Así nunca se ve una pantalla vacía y nunca se queda pegada. El tiempo desde que nace el proceso (`Process.getStartElapsedRealtime`) hasta ese momento se registra como `inicio_app`, y el resumen de analítica da su p50 y p90.
+
+## Seguridad
+
+| Capa | Medida |
+|---|---|
+| Token en el teléfono | AES-256-GCM con llave del Android Keystore (`CifradoLocal`). Un token viejo en texto plano se migra solo la primera vez que se lee. |
+| Copia de seguridad | `reglas_respaldo.xml` excluye las preferencias: el token cifrado no serviría en otro teléfono. |
+| Acceso a la app | Bloqueo opcional con `BiometricPrompt` (BIOMETRIC_WEAK + DEVICE_CREDENTIAL). Se pide al abrir y tras 1 minuto en segundo plano; activarlo o quitarlo también exige identificarse. |
+| Red | `network_security_config`: en release solo HTTPS (y la URL por defecto es la de Render); en debug se permite HTTP para probar en la red local. |
+| API | Token de 256 bits guardado como SHA-256, aislamiento por finca en cada consulta, límite de peticiones por IP en rutas sin token, cabeceras `nosniff`/`DENY`/`no-referrer`/HSTS y clave de administrador comparada en tiempo constante. |
+
+## Notificaciones
+
+`PoliticaNotificaciones.decidir` (código puro con pruebas) recibe las alertas, las ya notificadas, las categorías apagadas, el silencio nocturno y la hora, y devuelve qué notificar y qué recordar. Hay un canal de Android por categoría (`alertas_reproduccion`, `alertas_salud`, `alertas_manejo`), así que también se pueden apagar desde los ajustes del sistema. En silencio nocturno nada se marca como notificado: la siguiente revisión de la mañana lo envía.
+
+## Analítica de uso
+
+```mermaid
+flowchart LR
+    NAV["NavHost<br/>pantalla vista"] --> A
+    ACC["Acciones<br/>PDF · escaneo · soporte"] --> A
+    ERR["UncaughtExceptionHandler<br/>tipo + archivo:línea"] --> A
+    A["Analitica<br/>cola telemetria.jsonl"] --> W["TelemetriaWorker<br/>con red, en lotes de 200"]
+    W --> API["POST /api/telemetria<br/>sin token de finca"]
+    API --> T[("tabla telemetria")]
+    T --> R["GET /api/telemetria/resumen<br/>ADMIN_TOKEN"]
+```
+
+- **Anónima por diseño:** un UUID por instalación, sin relación con la finca. La petición no lleva el token (lo quita el interceptor de OkHttp) y el servidor no guarda la IP. El esquema de `zod` solo acepta identificadores cortos (`^[a-z][a-z0-9_]*$`) como nombres de evento y pantalla, para que no se cuelen textos libres.
+- **No pierde eventos:** la cola vive en un archivo y solo se recorta lo que el servidor confirmó. Un error fatal se escribe en el mismo hilo antes de que el proceso muera.
+- **Controlable:** si se apaga en Ajustes, se borra la cola y no se registra nada; "Borrar mis estadísticas" llama a `DELETE /api/telemetria/:instalacion` y genera un id nuevo.
+- **Resumen:** instalaciones activas, pantallas más vistas, acciones, errores agrupados por tipo y lugar, tiempo de arranque (p50/p90) y versiones en uso.
+
 ## Escáner de razas
 
 La foto se reduce a 1280 px y JPEG 85 % en el teléfono y se envía a `POST /api/identificar`. El servidor la pasa a un modelo de visión junto con el catálogo de razas y valida la respuesta: los ids que no existen en el catálogo se descartan y la confianza se acota a 0–100. La llave del modelo vive solo en el servidor.

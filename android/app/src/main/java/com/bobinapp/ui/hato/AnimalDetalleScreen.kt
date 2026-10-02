@@ -52,6 +52,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bobinapp.BobinappApp
 import com.bobinapp.data.local.entity.EstadoAnimal
 import com.bobinapp.data.local.entity.EventoEntity
 import com.bobinapp.data.local.entity.Sexo
@@ -107,6 +108,7 @@ fun AnimalDetalleScreen(
                 putExtra(Intent.EXTRA_SUBJECT, "Ficha de trazabilidad · ${archivo.nameWithoutExtension}")
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
+            (ctx.applicationContext as BobinappApp).container.analitica.accion("reporte_pdf")
             ctx.startActivity(Intent.createChooser(envio, "Compartir reporte"))
         }
     }

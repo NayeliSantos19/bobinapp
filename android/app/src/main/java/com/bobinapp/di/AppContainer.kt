@@ -2,6 +2,7 @@ package com.bobinapp.di
 
 import android.content.Context
 import com.bobinapp.data.ConnectivityObserver
+import com.bobinapp.data.analitica.Analitica
 import com.bobinapp.data.fotos.FotosAnimales
 import com.bobinapp.data.local.BobinappDatabase
 import com.bobinapp.data.remote.ApiProvider
@@ -35,6 +36,7 @@ class AppContainer(context: Context) {
         WorkScheduler.revisarAlertasAhora(app)
     })
     val sync = SyncRepository(db, apiProvider, ajustes, fotos)
+    val analitica = Analitica(app, ajustes, apiProvider)
 
     /** La primera vez que se abre la app, carga el hato de ejemplo para que no se vea vacía. */
     fun sembrarDemoSiHaceFalta() {

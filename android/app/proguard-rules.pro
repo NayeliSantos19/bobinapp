@@ -14,3 +14,6 @@
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 -dontwarn okhttp3.internal.platform.**
 -dontwarn org.conscrypt.**
+
+# Errores legibles en la analítica: conserva archivo y línea (con el mapping.txt de cada versión se traducen los nombres).
+-keepattributes SourceFile,LineNumberTable
