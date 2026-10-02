@@ -214,7 +214,7 @@ fun AjustesScreen(onPedirPermisoNotificaciones: () -> Unit, onAbrirAyuda: () -> 
         }
         Seccion("Servidor") {
             OutlinedTextField(url, { url = it }, label = { Text("Dirección de la API") }, singleLine = true, modifier = Modifier.fillMaxWidth())
-            Text("Emulador: http://10.0.2.2:3000/ · Teléfono real: la IP de tu computadora en la misma red wifi.",
+            Text("Por defecto: https://bobinapp-api.onrender.com/ (la primera conexión puede tardar 1 minuto si estaba dormida). API local: http://10.0.2.2:3000/ en el emulador o la IP de tu computadora en un teléfono.",
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             OutlinedButton(onClick = { vm.guardarServidor(url) }) { Text("Guardar dirección") }
             if (!aj.conectadoANube) {

@@ -114,14 +114,14 @@ cp .env.example .env        # ajusta DATABASE_URL
 npm install
 npm start                   # aplica las migraciones y escucha en :3000
 ```
-Comprueba con `http://localhost:3000/api/salud`.
+Comprueba con `http://localhost:3000/api/salud`. La API publicada está en [bobinapp-api.onrender.com](https://bobinapp-api.onrender.com/).
 
 Para el escáner de razas, define `ANTHROPIC_API_KEY` en `.env` (o como variable de entorno para Docker).
 
 ### 2. Ejecutar la app
 1. Abre la carpeta `android/` en Android Studio y espera a que Gradle sincronice.
 2. Ejecuta en un emulador. La app trae 13 animales de ejemplo para explorarla sin configurar nada.
-3. Para sincronizar: **Ajustes → Crear finca y conectar**. En el emulador la API es `http://10.0.2.2:3000/`; en un teléfono real usa la IP de tu computadora en la misma red wifi.
+3. Para sincronizar: **Ajustes → Crear finca y conectar**. La app viene apuntando a la API publicada (`https://bobinapp-api.onrender.com/`). Para usar una API local, cambia la dirección en Ajustes: `http://10.0.2.2:3000/` en el emulador o la IP de tu computadora en un teléfono real.
 
 ### Probar el modo sin conexión
 1. Conecta la finca y registra un animal: el indicador de arriba pasa a "Sincronizado".

@@ -99,3 +99,9 @@ test('cabeceras de seguridad y límite de peticiones', async () => {
   await request(limitada).post('/api/fincas').send({ nombre: 'Una' }).expect(201);
   await request(limitada).post('/api/fincas').send({ nombre: 'Otra' }).expect(429);
 });
+
+test('la raíz muestra la página de presentación', async () => {
+  const res = await request(app).get('/').expect(200);
+  assert.match(res.headers['content-type'], /text\/html/);
+  assert.match(res.text, /BOBINAPP API/);
+});

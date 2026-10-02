@@ -1,3 +1,4 @@
+const path = require('node:path');
 const express = require('express');
 const razas = require('../data/razas.json');
 const rutasFincas = require('./routes/fincas');
@@ -33,6 +34,9 @@ function crearApp(pool, opciones = {}) {
   app.use('/api/sync', rutasSync(pool));
   app.use('/api/identificar', rutasIdentificar(pool, opciones));
   app.use('/api/fotos', rutasFotos(pool));
+
+  // Página de presentación en la raíz, para quien abra el enlace de la API en el navegador.
+  app.get('/', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'index.html')));
 
   app.use((req, res) => res.status(404).json({ error: 'no_encontrado' }));
   // Manejador final: registra el error y no filtra detalles internos al cliente.

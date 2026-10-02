@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bobinapp API</title>
+<style>
+  :root{--bg:#ECEFEA;--card:#fff;--ink:#18211C;--muted:#58655D;--line:#D3DAD2;--accent:#23402F;--ok:#3A764A;--tag:#F2C414}
+  @media (prefers-color-scheme:dark){:root{--bg:#101512;--card:#18201B;--ink:#E5EBE6;--muted:#9AA79F;--line:#2E3933;--accent:#8AC698;--ok:#8AC698}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  main{max-width:760px;margin:0 auto;padding:40px 16px 56px}
+  h1{font-size:2.2rem;letter-spacing:.02em;margin:0 0 4px}
+  .sub{color:var(--muted);margin:0 0 24px}
+  .estado{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.9rem}
+  .estado i{width:9px;height:9px;border-radius:50%;background:var(--muted)}
+  .estado[data-ok="1"] i{background:var(--ok)} .estado[data-ok="0"] i{background:#C0583A}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:18px}
+  h2{font-size:1.05rem;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  td{padding:7px 6px;border-top:1px solid var(--line);vertical-align:top}
+  td:first-child{font-family:ui-monospace,Consolas,monospace;white-space:nowrap;color:var(--accent);font-weight:600}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
+  a{color:var(--accent)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .links a{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 14px;text-decoration:none;font-weight:600}
+  @media (max-width:520px){td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+<main>
+  <h1>BOBINAPP API</h1>
+  <p class="sub">Backend de Bobinapp: app Android de gestión ganadera que funciona sin señal, con genealogía, alertas y escáner de razas por foto.</p>
+  <span class="estado" id="estado" data-ok=""><i></i><span id="estadoTxt">Comprobando…</span></span>
+
+  <div class="links">
+    <a href="https://github.com/NayeliSantos19/bobinapp">Código en GitHub</a>
+    <a href="/api/salud">/api/salud</a>
+    <a href="/api/razas">/api/razas</a>
+  </div>
+
+  <section>
+    <h2>Qué hace</h2>
+    <p>Sincroniza los teléfonos de cada finca (cola local + <em>last-writer-wins</em> con cursor del servidor), guarda las fotos de los animales, identifica razas con un modelo de visión y recibe analítica de uso anónima.</p>
+    <p>Node.js 22 · Express · PostgreSQL 16 · zod · pruebas de integración contra PostgreSQL real en cada push.</p>
+  </section>
+
+  <section>
+    <h2>Rutas</h2>
+    <table>
+      <tr><td>GET /api/salud</td><td>Estado de la API y de la base de datos</td></tr>
+      <tr><td>GET /api/razas</td><td>Catálogo de 33 razas bovinas</td></tr>
+      <tr><td>POST /api/fincas</td><td>Crea una finca y devuelve su token una sola vez</td></tr>
+      <tr><td>POST /api/sync/push</td><td>Sube animales y eventos <small>(token)</small></td></tr>
+      <tr><td>GET /api/sync/cambios</td><td>Descarga cambios desde un cursor, paginado <small>(token)</small></td></tr>
+      <tr><td>PUT · GET /api/fotos/:id</td><td>Foto de un animal, verificada por su firma real <small>(token)</small></td></tr>
+      <tr><td>POST /api/identificar</td><td>Identifica la raza a partir de una foto <small>(token)</small></td></tr>
+      <tr><td>POST /api/telemetria</td><td>Eventos de uso anónimos, sin token y sin guardar la IP</td></tr>
+    </table>
+  </section>
+
+  <p class="sub" style="margin-top:22px;font-size:.85rem">Plan gratuito de Render: si la API estuvo inactiva, la primera petición tarda cerca de un minuto en despertar.</p>
+</main>
+<script>
+  fetch('/api/salud').then(r => r.json()).then(d => {
+    const ok = d.ok === true;
+    document.getElementById('estado').dataset.ok = ok ? '1' : '0';
+    document.getElementById('estadoTxt').textContent = ok ? 'En línea · base de datos conectada' : 'Sin conexión con la base de datos';
+  }).catch(() => {
+    document.getElementById('estado').dataset.ok = '0';
+    document.getElementById('estadoTxt').textContent = 'No responde';
+  });
+</script>
+</body>
+</html>

@@ -17,16 +17,16 @@ android {
         versionCode = 2
         versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        // 10.0.2.2 es la computadora anfitriona vista desde el emulador de Android.
-        buildConfigField("String", "API_URL_POR_DEFECTO", "\"http://10.0.2.2:3000/\"")
+        // API publicada en Render (ver render.yaml). Para usar una API local, cámbiala en Ajustes:
+        // en el emulador la computadora es http://10.0.2.2:3000/
+        buildConfigField("String", "API_URL_POR_DEFECTO", "\"https://bobinapp-api.onrender.com/\"")
         // Correo al que llegan los reportes de "Ayuda → Reportar un problema". Cámbialo por el tuyo.
         buildConfigField("String", "SOPORTE_EMAIL", "\"soporte@bobinapp.app\"")
     }
 
     buildTypes {
         release {
-            // En producción la app solo habla con la API por HTTPS (ver render.yaml).
-            buildConfigField("String", "API_URL_POR_DEFECTO", "\"https://bobinapp-api.onrender.com/\"")
+            // En producción la app solo habla con la API por HTTPS (network_security_config).
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
